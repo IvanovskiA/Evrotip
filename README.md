@@ -2,6 +2,6 @@
 
 First readme file 
 
-# CRUD
+# CRUD - operations
 
 You can create, read, update, and delete thing in this project
