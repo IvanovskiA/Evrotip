@@ -30,7 +30,7 @@ if (isset($_POST["submit"])) {
 ?>
 <?php include_once("header.php") ?>
 <div class="container">
-  <form action="" method="POST">
+  <form action="" method="POST" autocomplete="off">
     <div class="row">
       <div class="input-group">
         <input type="text" name="name" id="name" required value="">
