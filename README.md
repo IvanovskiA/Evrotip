@@ -8,4 +8,4 @@ You can create, read, update, and delete thing in this project
 
 #Angel 
 
-Exercises github.com
+Exercises www.github.com
