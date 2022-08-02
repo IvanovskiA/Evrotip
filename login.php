@@ -16,11 +16,7 @@ if (isset($_POST["submit"])) {
     $error_array["password"] = "can't be blank";
   }
   if (!empty($error_array)) {
-    $errors .= "<div class='errorMessageDiv'>";
-    foreach ($error_array as $key => $value) {
-      $errors .= "*Field: " . ucfirst($key) . " can't be blank <br>";
-    }
-    $errors .= "</div>";
+    errors($error_array);
   } else {
     $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
     $row = mysqli_fetch_assoc($result);
@@ -43,11 +39,11 @@ if (isset($_POST["submit"])) {
   <form action="" method="POST" autocomplete="off">
     <div class="row">
       <div class="input-group">
-        <input type="text" name="usernameemail" id="usernameemail" value="">
+        <input type="text" name="usernameemail" id="usernameemail" required value="">
         <label for="usernameemail">&nbsp;&nbsp;Username or Email: </label>
       </div>
       <div class="input-group">
-        <input type="password" name="password" id="password" value="">
+        <input type="password" name="password" id="password" required value="">
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
     </div>

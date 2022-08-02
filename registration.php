@@ -9,30 +9,30 @@ $error_array = array();
 if (isset($_POST["submit"])) {
   $name = test_input($_POST["name"]);
   if ($name === "") {
-    $error_array["name"] = " can't be blank";
+    $error_array["name"] = "can't be blank";
   }
   $username = test_input($_POST["username"]);
   if ($username === "") {
-    $error_array["username"] = " can't be blank";
+    $error_array["username"] = "can't be blank";
   }
   $email = test_input($_POST["email"]);
   if ($email === "") {
-    $error_array["email"] = " can't be blank";
+    $error_array["email"] = "can't be blank";
+  } else {
+    if (validationEmail($email) === false) {
+      $error_array["email format"] = "wrong";
+    }
   }
   $password = test_input($_POST["password"]);
   if ($password === "") {
-    $error_array["password"] = " can't be blank";
+    $error_array["password"] = "can't be blank";
   }
   $confirmpassword = test_input($_POST["confirmpassword"]);
   if ($confirmpassword === "") {
-    $error_array["confirmpassowd"] = " can't be blank!";
+    $error_array["confirmpassowd"] = "can't be blank!";
   }
   if (!empty($error_array)) {
-    $errors .= "<div class='errorMessageDiv'>";
-    foreach ($error_array as $key => $value) {
-      $errors .= "*Field: " . ucfirst($key) . " $value <br>";
-    }
-    $errors .= "</div>";
+    errors($error_array);
   } else {
     $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
     if (mysqli_num_rows($duplicate) > 0) {
@@ -93,7 +93,7 @@ if (isset($_POST["submit"])) {
   <br>
   <div class="divWinnerImg">
     <div class="row">
-      <?php echo $errors ?>
+      <?php echo $errors; ?>
     </div>
     <div class="row" style="margin-top: -150px;">
       <img class="imgWinner" src="img/giphy.gif" alt="">
