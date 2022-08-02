@@ -5,3 +5,7 @@ First readme file
 # CRUD - operations
 
 You can create, read, update, and delete thing in this project
+
+#Angel 
+
+Exercises github
