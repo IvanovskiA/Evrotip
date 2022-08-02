@@ -1,23 +1,40 @@
 <?php
 require_once("db_conn.php");
+include_once("includec_functions.php");
 if (!empty($_SESSION["iduser"])) {
   header("Location: index.php");
 }
+$errors_array = array();
+$errors = "";
 if (isset($_POST["submit"])) {
-  $usernameemail = $_POST["usernameemail"];
-  $password = $_POST["password"];
-  $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
-  $row = mysqli_fetch_assoc($result);
-  if (mysqli_num_rows($result) > 0) {
-    if ($password == $row["password"]) {
-      $_SESSION["login"] = true;
-      $_SESSION["iduser"] = $row["id"];
-      header("Location: index.php");
-    } else {
-      echo "<script>alert('Wrong Password'); </script>";
+  $usernameemail = test_input($_POST["usernameemail"]);
+  if ($usernameemail === "") {
+    $error_array["Username or Email"] = "can't be blank";
+  }
+  $password = test_input($_POST["password"]);
+  if ($password === "") {
+    $error_array["password"] = "can't be blank";
+  }
+  if (!empty($error_array)) {
+    $errors .= "<div class='errorMessageDiv'>";
+    foreach ($error_array as $key => $value) {
+      $errors .= "*Field: " . ucfirst($key) . " can't be blank <br>";
     }
+    $errors .= "</div>";
   } else {
-    echo "<script> alert('User Not Registered'); </script>";
+    $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
+    $row = mysqli_fetch_assoc($result);
+    if (mysqli_num_rows($result) > 0) {
+      if ($password == $row["password"]) {
+        $_SESSION["login"] = true;
+        $_SESSION["iduser"] = $row["id"];
+        header("Location: index.php");
+      } else {
+        echo "<script>alert('Wrong Password'); </script>";
+      }
+    } else {
+      echo "<script> alert('User Not Registered'); </script>";
+    }
   }
 }
 ?>
@@ -26,11 +43,11 @@ if (isset($_POST["submit"])) {
   <form action="" method="POST" autocomplete="off">
     <div class="row">
       <div class="input-group">
-        <input type="text" name="usernameemail" id="usernameemail" required value="">
+        <input type="text" name="usernameemail" id="usernameemail" value="">
         <label for="usernameemail">&nbsp;&nbsp;Username or Email: </label>
       </div>
       <div class="input-group">
-        <input type="password" name="password" id="password" required value="">
+        <input type="password" name="password" id="password" value="">
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
     </div>
@@ -42,8 +59,12 @@ if (isset($_POST["submit"])) {
     </div>
   </form>
   <div class="divWinnerImg">
-    <img class="imgWinner" src="img/giphy.gif" alt="">
+    <div class="row">
+      <?php echo $errors ?>
+    </div>
+    <div class="row" style="margin-top: -150px;">
+      <img class="imgWinner" src="img/giphy.gif" alt="">
+    </div>
   </div>
-  <br>
 </div>
 <?php include_once("footer.php") ?>

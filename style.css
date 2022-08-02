@@ -228,7 +228,8 @@ div.dataTables_wrapper {
 }
 
 
-.divWinnerImg {
+.divWinnerImg .row img,
+.divWinnerImg .row p {
   margin: auto;
   text-align: center;
   align-items: center;
@@ -342,6 +343,26 @@ form {
   color: #fff;
   cursor: text;
   transition: 0.2s;
+}
+
+.fieldsMessage {
+  font-size: 20px;
+  color: #550A21;
+  background-color: white;
+  width: 40%;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.errorMessageDiv {
+  width: auto;
+  margin: auto;
+  text-align: justify;
+  color: white;
+  font-weight: bold;
+  border: 3px solid #550A21;
+
 }
 
 .input-group select {
