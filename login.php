@@ -1,6 +1,6 @@
 <?php
 require_once("db_conn.php");
-include_once("includec_functions.php");
+include_once("included_functions.php");
 if (!empty($_SESSION["iduser"])) {
   header("Location: index.php");
 }
@@ -21,6 +21,7 @@ if (isset($_POST["submit"])) {
     $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
+      // $password = password_verify($password, $row["password"]);
       if ($password == $row["password"]) {
         $_SESSION["login"] = true;
         $_SESSION["iduser"] = $row["id"];

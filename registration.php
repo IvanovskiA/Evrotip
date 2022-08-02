@@ -1,6 +1,6 @@
 <?php
 require_once("db_conn.php");
-include_once("includec_functions.php");
+include_once("included_functions.php");
 if (!empty($_SESSION["iduser"])) {
   header("Location: index.php");
 }
@@ -40,11 +40,15 @@ if (isset($_POST["submit"])) {
       "<script> alert('Username or Email Has Already Taken'); </script>";
     } else {
       if ($password == $confirmpassword) {
+        // $password = password_hash($password, PASSWORD_BCRYPT);
+        $name = mysqli_real_escape_string($connection, $name);
+        $username = mysqli_real_escape_string($connection, $username);
+        $email = mysqli_real_escape_string($connection, $email);
+        $password = mysqli_real_escape_string($connection, $password);
         $query = "INSERT INTO users (name,username,email,password)
 								VALUES('$name','$username','$email','$password')";
         mysqli_query($connection, $query);
-        echo
-        "<script>alert('Registration Successful');</script>";
+        echo "<script>alert('Registration Successful');</script>";
       } else {
         echo
         "<script>alert('Passwords Does Not Match');</script>";

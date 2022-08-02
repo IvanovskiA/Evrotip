@@ -1,5 +1,6 @@
 <?php
 require_once("db_conn.php");
+include_once("included_functions.php");
 if (!empty($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
@@ -13,11 +14,16 @@ if (!empty($_SESSION["iduser"])) {
 }
 $id = $_GET['id'];
 if (isset($_POST["submit"])) {
-  $name = $_POST["name"];
-  $username = $_POST["username"];
-  $email = $_POST["email"];
-  $password = $_POST["password"];
+  $name = test_input($_POST["name"]);
+  $username = test_input($_POST["username"]);
+  $email = test_input($_POST["email"]);
+  $password = test_input($_POST["password"]);
   $role = $_POST["role"];
+
+  $name = mysqli_real_escape_string($connection, $name);
+  $username = mysqli_real_escape_string($connection, $username);
+  $email = mysqli_real_escape_string($connection, $email);
+  $password = mysqli_real_escape_string($connection, $password);
 
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
 
