@@ -18,6 +18,7 @@
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="jquery.js"></script>
 </body>
 
 </html>
