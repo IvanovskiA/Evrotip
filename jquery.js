@@ -6,7 +6,7 @@ $("document").ready(function () {
 	$(".form").show(3000);
 	$("footer").show(5000);
 	$(".searchresult").show(6000);
-	$("table").css("width", "100%");
+	$(".searchresult table").css("width", "100%");
 });
 $(".navLink").hover(function () {
 	$(this).css("background-color", "grey");

@@ -97,7 +97,7 @@ $table .= '</tbody>
         <input type="date" name="txtEndDate" id="do" value="<?php if (isset($endDate)) {
                                                               echo $endDate;
                                                             } ?>">
-        <label for="do">Odebete do:</label>
+        <label for="do">Odberete do:</label>
       </div>
     </div>
     <div class="input-group">

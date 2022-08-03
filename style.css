@@ -88,6 +88,10 @@ nav {
   display: none;
 }
 
+.searchresult table {
+  width: 50%;
+}
+
 .searchresult h1 {
   text-align: center;
   color: white;
