@@ -17,10 +17,12 @@ $query = "SELECT slotpersons.ReferenceNo, slotpersons.PersonObjectId, slotperson
 slotpersons.City, slotpersons.ISOType, country_iso.country, slotpersons.TransactionDate
 FROM slotpersons 
 INNER JOIN country_iso ON slotpersons.ISOCode = country_iso.iso_code";
-
+$endDate = date("Y-m-d");
+$startDate = date("Y-m-d", strtotime('-2 days', strtotime($endDate)));
 if (isset($_POST['submit'])) {
   $startDate = $_POST['txtStartDate'];
   $endDate = $_POST['txtEndDate'];
+
 
   if (($startDate !== "" && $endDate !== "")) {
     $query .= " WHERE TransactionDate BETWEEN '$startDate' and '$endDate'";
@@ -88,15 +90,11 @@ $table .= '</tbody>
   <form action="" method="POST">
     <div class="row">
       <div class="input-group">
-        <input type="date" name="txtStartDate" id="od" value="<?php if (isset($startDate)) {
-                                                                echo $startDate;
-                                                              } ?>">
+        <input type="date" name="txtStartDate" id="od" value="<?php echo $startDate; ?>">
         <label for="od">Odberete od:</label>
       </div>
       <div class="input-group">
-        <input type="date" name="txtEndDate" id="do" value="<?php if (isset($endDate)) {
-                                                              echo $endDate;
-                                                            } ?>">
+        <input type="date" name="txtEndDate" id="do" value="<?php echo $endDate; ?>">
         <label for="do">Odberete do:</label>
       </div>
     </div>
