@@ -25,7 +25,7 @@ function errors($error_array = array())
     global $errors;
     $errors .= "<div class='errorMessageDiv'>";
     foreach ($error_array as $key => $value) {
-      $errors .= "*Field: " . ucfirst($key) . " $value <br>";
+      $errors .= ucfirst($key) . " $value <br>";
     }
     $errors .= "</div>";
     return $errors;

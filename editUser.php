@@ -46,13 +46,14 @@ if (isset($_POST["submit"])) {
     $email = mysqli_real_escape_string($connection, $email);
     $password = mysqli_real_escape_string($connection, $password);
 
-    $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`passwor`='$password',`role`='$role' WHERE id = $id";
+    $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
     $result = mysqli_query($connection, $query);
     if ($result) {
       header("Location: indexAdmin.php?msg=User data update successfully ");
     } else {
-      $errors = "Failed: ";
-      $errors .= mysqli_error($connection); // naprajgo so message porakata so ke ja prikazva pod formata vo bodyto
+      $errmsg = mysqli_error($connection);
+      $error_array['Failed: '] = "$errmsg";
+      errors($error_array);
     }
   }
 }

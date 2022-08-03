@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
   if ($usernameemail === "") {
     $error_array["Username or Email"] = "can't be blank";
   }
-  $password = test_input($_POST["password"]);
+  $password = $_POST["password"];
   if ($password === "") {
     $error_array["password"] = "can't be blank";
   }
@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
     $row = mysqli_fetch_assoc($result);
     if (mysqli_num_rows($result) > 0) {
       // $password = password_verify($password, $row["password"]);
-      if ($password == $row["password"]) {
+      if ($password === $row["password"]) {
         $_SESSION["login"] = true;
         $_SESSION["iduser"] = $row["id"];
         header("Location: index.php");

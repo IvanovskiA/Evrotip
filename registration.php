@@ -23,11 +23,11 @@ if (isset($_POST["submit"])) {
       $error_array["email format"] = "wrong";
     }
   }
-  $password = test_input($_POST["password"]);
+  $password = $_POST["password"];
   if ($password === "") {
     $error_array["password"] = "can't be blank";
   }
-  $confirmpassword = test_input($_POST["confirmpassword"]);
+  $confirmpassword = $_POST["confirmpassword"];
   if ($confirmpassword === "") {
     $error_array["confirmpassowd"] = "can't be blank!";
   }
@@ -40,11 +40,11 @@ if (isset($_POST["submit"])) {
       "<script> alert('Username or Email Has Already Taken'); </script>";
     } else {
       if ($password == $confirmpassword) {
-        // $password = password_hash($password, PASSWORD_BCRYPT);
         $name = mysqli_real_escape_string($connection, $name);
         $username = mysqli_real_escape_string($connection, $username);
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
+        // $password = password_hash($password, PASSWORD_DEFAULT);
         $query = "INSERT INTO users (name,username,email,password)
 								VALUES('$name','$username','$email','$password')";
         mysqli_query($connection, $query);
