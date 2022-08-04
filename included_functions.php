@@ -9,27 +9,23 @@ function test_input($data)
   return $data;
 }
 
-function validationEmail($email)
+function has_presence($value)
 {
-  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    return true;
-  } else {
-    return false;
-  }
+  return isset($value) && $value !== "";
 }
+
+function validationEmail($value)
+{
+  return filter_var($value, FILTER_VALIDATE_EMAIL);
+}
+
+
+
+
+
 
 function errors($error_array = array())
 {
-  // global $error_array;
-  // if (!empty($error_array)) {
-  //   global $errors;
-  //   $errors .= "<div class='errorMessageDiv'>";
-  //   foreach ($error_array as $key => $value) {
-  //     $errors .= ucfirst($key) . " $value <br>";
-  //   }
-  //   $errors .= "</div>";
-  //   return $errors;
-
   global $error_array;
   if (!empty($error_array)) {
     global $errors;
