@@ -31,13 +31,10 @@ if (isset($_POST["submit"])) {
   if ($confirmpassword === "") {
     $error_array["confirmpassowd"] = "can't be blank";
   }
-  if (!empty($error_array)) {
-    errors($error_array);
-  } else {
+  if (empty($error_array)) {
     $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
     if (mysqli_num_rows($duplicate) > 0) {
-      echo
-      "<script> alert('Username or Email Has Already Taken'); </script>";
+      $error_array["registration:"] = "failed - username or email already taken";
     } else {
       if ($password == $confirmpassword) {
         $name = mysqli_real_escape_string($connection, $name);
@@ -48,12 +45,15 @@ if (isset($_POST["submit"])) {
         $query = "INSERT INTO users (name,username,email,password)
 								VALUES('$name','$username','$email','$password')";
         mysqli_query($connection, $query);
-        echo "<script>alert('Registration Successful');</script>";
+        $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
       } else {
         echo
-        "<script>alert('Passwords Does Not Match');</script>";
+        $error_array["registration"] = "failed - passwords does not match";
       }
     }
+    errors($error_array);
+  } else {
+    errors($error_array);
   }
 }
 ?>
@@ -91,7 +91,7 @@ if (isset($_POST["submit"])) {
       <div class="input-group"><button type="submit" name="submit">Registration</button></div>
     </div>
     <div class="input-group">
-      <a href="login.php">Login</a>
+      <!-- <a href="login.php">Login</a> -->
     </div>
     <div class="row">
       <?php echo $errors; ?>
