@@ -23,7 +23,7 @@ if (isset($_POST["submit"])) {
       $error_array["email format"] = "wrong";
     }
   }
-  $password = $_POST["password"];
+  $password = test_input($_POST["password"]);
   if ($password === "") {
     $error_array["password"] = "can't be blank";
   }
@@ -44,7 +44,7 @@ if (isset($_POST["submit"])) {
         $username = mysqli_real_escape_string($connection, $username);
         $email = mysqli_real_escape_string($connection, $email);
         $password = mysqli_real_escape_string($connection, $password);
-        // $password = password_hash($password, PASSWORD_DEFAULT);
+        // $password = password_hash($password, PASSWORD_BCRYPT);
         $query = "INSERT INTO users (name,username,email,password)
 								VALUES('$name','$username','$email','$password')";
         mysqli_query($connection, $query);

@@ -11,7 +11,7 @@ if (isset($_POST["submit"])) {
   if ($usernameemail === "") {
     $error_array["Username or Email"] = "can't be blank";
   }
-  $password = $_POST["password"];
+  $password = test_input($_POST["password"]);
   if ($password === "") {
     $error_array["password"] = "can't be blank";
   }
