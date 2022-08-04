@@ -1,18 +1,18 @@
 <?php
-require_once("db_conn.php");
+require_once("../db_conn.php");
 if (!empty($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
   $row = mysqli_fetch_assoc($result);
   $userRole = $row["role"];
   if ($userRole !== "Admin") {
-    header("Location: index.php");
+    header("Location: ../index.php");
   }
 } else {
-  header("Location: login.php");
+  header("Location: ../login.php");
 }
 ?>
-<?php include_once("header.php") ?>
+<?php include_once("../components/header.php") ?>
 <div class="container">
   <div class="searchresult" style="padding-top: 50px;">
     <?php
@@ -59,4 +59,4 @@ if (!empty($_SESSION["iduser"])) {
     </table>
   </div>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("../components/footer.php") ?>

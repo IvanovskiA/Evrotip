@@ -85,7 +85,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 $table .= '</tbody>
 </table>';
 ?>
-<?php include_once("header.php") ?>
+<?php include_once("components/header.php") ?>
 <div class="container">
   <form action="" method="POST">
     <div class="row">
@@ -110,4 +110,4 @@ $table .= '</tbody>
     } ?>
   </div>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("components/footer.php") ?>

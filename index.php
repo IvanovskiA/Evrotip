@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
   }
 }
 ?>
-<?php include_once("header.php") ?>
+<?php include_once("components/header.php") ?>
 
 <div class="container">
   <div class="form">
@@ -116,4 +116,4 @@ if (isset($_POST['submit'])) {
     <?php echo "<h1 style='color: white'>" . $message . "</h1>" ?>
   </div>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("components/footer.php") ?>

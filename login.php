@@ -35,16 +35,16 @@ if (isset($_POST["submit"])) {
   }
 }
 ?>
-<?php include_once("header.php"); ?>
+<?php include_once("components/header.php"); ?>
 <div class="container">
   <form action="" method="POST" autocomplete="off">
     <div class="row">
       <div class="input-group">
-        <input type="text" name="usernameemail" id="usernameemail" required value="">
+        <input type="text" name="usernameemail" id="usernameemail" value="">
         <label for="usernameemail">&nbsp;&nbsp;Username or Email: </label>
       </div>
       <div class="input-group">
-        <input type="password" name="password" id="password" required value="">
+        <input type="password" name="password" id="password" value="">
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
     </div>
@@ -54,14 +54,14 @@ if (isset($_POST["submit"])) {
     <div class="input-group">
       <a href="registration.php">Register</a>
     </div>
-  </form>
-  <div class="divWinnerImg">
     <div class="row">
       <?php echo $errors ?>
     </div>
+  </form>
+  <div class="divWinnerImg">
     <div class="row" style="margin-top: -150px;">
       <img class="imgWinner" src="img/giphy.gif" alt="">
     </div>
   </div>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("components/footer.php") ?>

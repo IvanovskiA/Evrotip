@@ -29,7 +29,7 @@ if (isset($_POST["submit"])) {
   }
   $confirmpassword = $_POST["confirmpassword"];
   if ($confirmpassword === "") {
-    $error_array["confirmpassowd"] = "can't be blank!";
+    $error_array["confirmpassowd"] = "can't be blank";
   }
   if (!empty($error_array)) {
     errors($error_array);
@@ -57,7 +57,7 @@ if (isset($_POST["submit"])) {
   }
 }
 ?>
-<?php include_once("header.php") ?>
+<?php include_once("components/header.php") ?>
 <div class="container">
   <form action="" method="POST" autocomplete="off">
     <div class="fieldsMessage">
@@ -65,27 +65,27 @@ if (isset($_POST["submit"])) {
     </div>
     <div class="row">
       <div class="input-group">
-        <input type="text" name="name" id="name" required value="">
+        <input type="text" name="name" id="name" value="">
         <label for="name">&nbsp;&nbsp;Name: </label>
       </div>
       <div class="input-group">
-        <input type="text" name="username" id="username" required value="">
+        <input type="text" name="username" id="username" value="">
         <label for="username">&nbsp;&nbsp;Username: </label>
       </div>
     </div>
     <div class="row">
       <div class="input-group">
-        <input type="password" name="password" id="password" required value="">
+        <input type="password" name="password" id="password" value="">
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
       <div class="input-group">
-        <input type="password" name="confirmpassword" id="confirmpassword" required value="">
+        <input type="password" name="confirmpassword" id="confirmpassword" value="">
         <label for="confirmpassword">&nbsp;&nbsp;Confirm Password: </label>
       </div>
     </div>
     <div class="row">
       <div class="input-group">
-        <input type="text" name="email" id="email" required value="">
+        <input type="text" name="email" id="email" value="">
         <label for="email">&nbsp;&nbsp;Email: </label>
       </div>
       <div class="input-group"><button type="submit" name="submit">Registration</button></div>
@@ -93,15 +93,15 @@ if (isset($_POST["submit"])) {
     <div class="input-group">
       <a href="login.php">Login</a>
     </div>
-  </form>
-  <br>
-  <div class="divWinnerImg">
     <div class="row">
       <?php echo $errors; ?>
     </div>
+  </form>
+  <br>
+  <div class="divWinnerImg">
     <div class="row" style="margin-top: -150px;">
       <img class="imgWinner" src="img/giphy.gif" alt="">
     </div>
   </div>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("components/footer.php") ?>

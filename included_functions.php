@@ -20,14 +20,25 @@ function validationEmail($email)
 
 function errors($error_array = array())
 {
+  // global $error_array;
+  // if (!empty($error_array)) {
+  //   global $errors;
+  //   $errors .= "<div class='errorMessageDiv'>";
+  //   foreach ($error_array as $key => $value) {
+  //     $errors .= ucfirst($key) . " $value <br>";
+  //   }
+  //   $errors .= "</div>";
+  //   return $errors;
+
   global $error_array;
   if (!empty($error_array)) {
     global $errors;
-    $errors .= "<div class='errorMessageDiv'>";
+    $errors .= '<div class="alert info">
+      <span class="closebtn">&times;</span>';
     foreach ($error_array as $key => $value) {
       $errors .= ucfirst($key) . " $value <br>";
     }
-    $errors .= "</div>";
-    return $errors;
+    $errors .= '</div>';
   }
 }
+// }

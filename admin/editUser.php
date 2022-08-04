@@ -1,16 +1,16 @@
 <?php
-require_once("db_conn.php");
-include_once("included_functions.php");
+require_once("../db_conn.php");
+include_once("../included_functions.php");
 if (!empty($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
   $row = mysqli_fetch_assoc($result);
   $userRole = $row["role"];
   if ($userRole !== "Admin") {
-    header("Location: index.php");
+    header("Location: ../index.php");
   }
 } else {
-  header("Location: login.php");
+  header("Location: ../login.php");
 }
 $id = $_GET['id'];
 $error_array = array();
@@ -59,7 +59,7 @@ if (isset($_POST["submit"])) {
 }
 
 ?>
-<?php include_once("header.php") ?>
+<?php include_once("../components/header.php") ?>
 <?php
 $id = $_GET['id'];
 $query = "SELECT * FROM users WHERE  id = $id LIMIT 1";
@@ -80,7 +80,7 @@ $row = mysqli_fetch_assoc($result);
     </div>
     <div class="row">
       <div class="input-group">
-        <input type="password" name="password" id="password" value="<?php echo $row['password'] ?>">
+        <input type="text" name="password" id="password" value="<?php echo $row['password'] ?>">
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
       <div class="input-group">
@@ -116,4 +116,4 @@ $row = mysqli_fetch_assoc($result);
     </div>
   </form>
 </div>
-<?php include_once("footer.php") ?>
+<?php include_once("../components/footer.php") ?>

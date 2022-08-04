@@ -1,22 +1,25 @@
 <?php
-require_once("db_conn.php");
+$pagetitle = $_SERVER["PHP_SELF"];
+switch ($pagetitle) {
+  case "/xml/admin/indexAdmin.php":
+    $title = "Evrotip Users";
+    $path = "../";
+    break;
+  case "/xml/admin/editUser.php":
+    $title = "Evrotip Users";
+    $path = "../";
+    break;
+  default:
+    $title = "Evrotip Dobitnici";
+    $path = "";
+    break;
+}
+require_once($path . "db_conn.php");
 if (isset($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
   $row = mysqli_fetch_assoc($result);
   $userRole = $row["role"];
-}
-$pagetitle = $_SERVER["PHP_SELF"];
-switch ($pagetitle) {
-  case "/xml/indexAdmin.php":
-    $title = "Evrotip Users";
-    break;
-  case "/xml/editUser.php":
-    $title = "Evrotip Users";
-    break;
-  default:
-    $title = "Evrotip Dobitnici";
-    break;
 }
 ?>
 <!DOCTYPE html>
@@ -33,7 +36,7 @@ switch ($pagetitle) {
   <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="<?php echo $path . "style.css"; ?>">
   <script src="https://kit.fontawesome.com/9e05866ef3.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -48,22 +51,22 @@ switch ($pagetitle) {
     <label for="check" class="checkbtn">
       <i class="fa-solid fa-bars"></i>
     </label>
-    <label class="logo"><a href="index.php"><img src="img/logo.png" alt=""></a></label>
+    <label class="logo"><a href="<?php echo $path . "index.php" ?>"><img src="<?php echo $path . "img/logo.png" ?>" alt=""></a></label>
     <ul>
       <li><a class="navTime"><?php if (!isset($userid)) {
                                 echo date("Y/m/d H:i - l");
                               } ?></a></li>
-      <li><a class="navLink" href="index.php"><?php if (isset($userid)) {
-                                                echo "Zapisuvaj";
-                                              } ?></a></li>
-      <li><a class="navLink" href="read.php"><?php if (isset($userid)) {
-                                                echo "Citaj";
-                                              } ?></a></li>
-      <li><a class="navLink" href="logout.php"><?php if (isset($userid)) {
-                                                  echo "Odjava";
-                                                } ?></a></li>
-      <li><a class="navLink" href="indexAdmin.php"><?php if (isset($userid) && $userRole === "Admin") {
-                                                      echo "Admin";
-                                                    } ?></a></li>
+      <li><a class="navLink" href="<?php echo $path . "index.php" ?>"><?php if (isset($userid)) {
+                                                                        echo "Zapisuvaj";
+                                                                      } ?></a></li>
+      <li><a class="navLink" href="<?php echo $path . "read.php" ?>"><?php if (isset($userid)) {
+                                                                        echo "Citaj";
+                                                                      } ?></a></li>
+      <li><a class="navLink" href="<?php echo $path . "logout.php" ?>"><?php if (isset($userid)) {
+                                                                          echo "Odjava";
+                                                                        } ?></a></li>
+      <li><a class="navLink" href="<?php echo $path . "admin/indexAdmin.php" ?>"><?php if (isset($userid) && $userRole === "Admin") {
+                                                                                    echo "Admin";
+                                                                                  } ?></a></li>
     </ul>
   </nav>
