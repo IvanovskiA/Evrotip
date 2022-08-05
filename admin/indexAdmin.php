@@ -15,15 +15,7 @@ if (!empty($_SESSION["iduser"])) {
 <?php include_once("../components/header.php") ?>
 <div class="container">
   <div class="searchresult" style="padding-top: 50px;">
-    <?php
-    if (isset($_GET['msg'])) {
-      $msg = $_GET['msg'];
-      echo '<div class="alert info">
-        <span class="closebtn">&times;</span>  
-        ' . $msg . '
-      </div>';
-    }
-    ?>
+    <?php include("../message.php"); ?>
     <table class="content-table" border="1px">
       <thead>
         <tr class="active">

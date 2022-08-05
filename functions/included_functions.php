@@ -19,11 +19,7 @@ function validationEmail($value)
   return filter_var($value, FILTER_VALIDATE_EMAIL);
 }
 
-
-
-
-
-
+// Display errors function
 function errors($error_array = array())
 {
   global $error_array;
@@ -37,4 +33,22 @@ function errors($error_array = array())
     $errors .= '</div>';
   }
 }
-// }
+function hasPresence_emailValidation($array)
+{
+  global $error_array;
+  foreach ($array as $key) {
+    $value = test_input($_POST[$key]);
+    if (!has_presence($value)) {
+      $error_array[$key] = "can't be blank";
+    }
+    if ($key === "email") {
+      if (!validationEmail($value)) {
+        if (!array_key_exists($key, $error_array)) {
+          $error_array[$key] = "wrong format";
+        }
+      }
+    } else {
+      continue;
+    }
+  }
+}

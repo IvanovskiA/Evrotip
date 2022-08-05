@@ -416,6 +416,16 @@ form {
   text-align: center;
 }
 
+.input-group a button {
+  padding: 10px 0;
+  color: #fff;
+  outline: none;
+  background: transparent;
+  border: 1px solid #fff;
+  width: 100%;
+  cursor: pointer;
+}
+
 
 .input-group input:focus~label,
 .input-group input:valid~label,

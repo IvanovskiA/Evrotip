@@ -1,6 +1,6 @@
 <?php
 require_once("../db_conn.php");
-include_once("../included_functions.php");
+include_once("../functions/userUpdate_functions.php");
 if (!empty($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
@@ -13,68 +13,22 @@ if (!empty($_SESSION["iduser"])) {
   header("Location: ../login.php");
 }
 $id = $_GET['id'];
-$error_array = array();
-$errors = "";
-if (isset($_POST["submit"])) {
-  $name = test_input($_POST["name"]);
-  if ($name === "") {
-    $error_array["name"] = "can't be blank";
-  }
-  $username = test_input($_POST["username"]);
-  if ($username === "") {
-    $error_array["username"] = "can't be blank";
-  }
-  $email = test_input($_POST["email"]);
-  if ($email === "") {
-    $error_array["email"] = "can't be blank";
-  } else {
-    if (validationEmail($email) === false) {
-      $error_array["email format"] = "wrong";
-    }
-  }
-  $password = test_input($_POST["password"]);
-  if ($password === "") {
-    $error_array["password"] = "can't be blank";
-  }
-  $role = $_POST["role"];
-
-  if (!empty($error_array)) {
-    errors($error_array);
-  } else {
-    $name = mysqli_real_escape_string($connection, $name);
-    $username = mysqli_real_escape_string($connection, $username);
-    $email = mysqli_real_escape_string($connection, $email);
-    $password = mysqli_real_escape_string($connection, $password);
-
-    $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
-    $result = mysqli_query($connection, $query);
-    if ($result) {
-      header("Location: indexAdmin.php?msg=User data update successfully ");
-    } else {
-      $errmsg = mysqli_error($connection);
-      $error_array['Failed: '] = "$errmsg";
-      errors($error_array);
-    }
-  }
-}
+editUserFunction();
 
 ?>
 <?php include_once("../components/header.php") ?>
 <?php
-$id = $_GET['id'];
-$query = "SELECT * FROM users WHERE  id = $id LIMIT 1";
-$result = mysqli_query($connection, $query);
-$row = mysqli_fetch_assoc($result);
+currentData();
 ?>
 <div class="container">
   <form action="" method="POST">
     <div class="row">
       <div class="input-group">
-        <input type="text" name="name" id="name" required value="<?php echo $row['name'] ?>">
+        <input type="text" name="name" id="name" value="<?php echo $row['name'] ?>">
         <label for="name">&nbsp;&nbsp;Name: </label>
       </div>
       <div class="input-group">
-        <input type="text" name="username" id="username" required value="<?php echo $row['username'] ?>">
+        <input type="text" name="username" id="username" value="<?php echo $row['username'] ?>">
         <label for="username">&nbsp;&nbsp;Username: </label>
       </div>
     </div>
@@ -84,7 +38,7 @@ $row = mysqli_fetch_assoc($result);
         <label for="password">&nbsp;&nbsp;Password: </label>
       </div>
       <div class="input-group">
-        <input type="text" name="email" id="email" required value="<?php echo $row['email'] ?>">
+        <input type="text" name="email" id="email" value="<?php echo $row['email'] ?>">
         <label for="email">&nbsp;&nbsp;Email: </label>
       </div>
     </div>

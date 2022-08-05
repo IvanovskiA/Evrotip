@@ -45,7 +45,7 @@ if (isset($_SESSION["iduser"])) {
 </head>
 
 <body>
-  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="img/arrow-up.png" width="30px" height="30px" alt=""></button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
   <nav>
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
