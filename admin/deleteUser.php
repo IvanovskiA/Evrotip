@@ -8,7 +8,7 @@ if (!empty($_SESSION["iduser"])) {
 	if ($userRole === "Admin") {
 		header("Location: indexAdmin.php");
 	} else {
-		header("Location: index.php");
+		header("Location: ../write.php");
 	}
 } else {
 	header("Location: login.php");

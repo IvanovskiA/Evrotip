@@ -2,7 +2,7 @@
 require_once("db_conn.php");
 include_once("functions/reg_functions.php");
 if (!empty($_SESSION["iduser"])) {
-  header("Location: index.php");
+  header("Location: write.php");
 }
 registration();
 ?>

@@ -1,9 +1,6 @@
 <?php
 require_once("db_conn.php");
 include_once("functions/login_functions.php");
-if (!empty($_SESSION["iduser"])) {
-  header("Location: index.php");
-}
 logIn();
 ?>
 <?php include_once("components/header.php"); ?>

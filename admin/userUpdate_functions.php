@@ -1,5 +1,5 @@
 <?php
-require_once("included_functions.php");
+require_once("../functions/included_functions.php");
 
 function editUserFunction()
 {

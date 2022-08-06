@@ -4,6 +4,9 @@ $errors = $name = $username = $email = $password = $confirmpassword = "";
 // Registration functions
 function registration()
 {
+  if (isset($_SESSION["iduser"])) {
+    header("Location: write.php");
+  }
   global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
   if (isset($_POST["submit"])) {
     $name = mysqli_real_escape_string($connection, test_input($_POST["name"]));

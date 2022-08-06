@@ -1,17 +1,7 @@
 <?php
 require_once("db_conn.php");
 require_once("functions/read_functions.php");
-if (!empty($_SESSION["iduser"])) {
-  $userid = $_SESSION["iduser"];
-  $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
-  $row = mysqli_fetch_assoc($result);
-  $userRole = $row["role"];
-  if ($userRole === "Write") {
-    header("Location: index.php");
-  }
-} else {
-  header("Location: login.php");
-}
+blockRutes();
 defaultValues();
 searchingWinners();
 printingTable();

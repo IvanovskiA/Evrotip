@@ -4,6 +4,9 @@ $errors = $usernameemail = $password = "";
 function logIn()
 {
   global $connection, $error_array, $usernameemail, $password;
+  if (isset($_SESSION["iduser"])) {
+    header("Location: write.php");
+  }
   if (isset($_POST["submit"])) {
     $usernameemail = mysqli_real_escape_string($connection, test_input($_POST["username/Email"]));
     $password = mysqli_real_escape_string($connection, test_input($_POST["password"]));
@@ -30,7 +33,8 @@ function checkingLoginData()
     if ($password === $row["password"]) {
       $_SESSION["login"] = true;
       $_SESSION["iduser"] = $row["id"];
-      header("Location: index.php");
+      $_SESSION["roleuser"] = $row["role"];
+      header("Location: write.php");
     } else {
       return $error_array["Failed: "] = "Wrong password";
     }

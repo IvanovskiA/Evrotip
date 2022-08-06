@@ -33,6 +33,8 @@ function errors($error_array = array())
     $errors .= '</div>';
   }
 }
+
+// checking empty field and email validation
 function hasPresence_emailValidation($array)
 {
   global $error_array;
@@ -51,4 +53,34 @@ function hasPresence_emailValidation($array)
       continue;
     }
   }
+}
+
+// userRole function
+function blockRutes()
+{
+  if (!empty($_SESSION["iduser"])) {
+    $userRole = $_SESSION["roleuser"];
+    if ($_SERVER['PHP_SELF'] === "/xml/write.php") {
+      if (($userRole !== "write") && ($userRole !== "read/write") && ($userRole !== "admin")) {
+        header("Location: read.php");
+      }
+    } elseif ($_SERVER['PHP_SELF'] === "/xml/read.php") {
+      if (($userRole !== "read") && ($userRole !== "read/write") && ($userRole !== "admin")) {
+        header("Location: write.php");
+      }
+    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/indexAdmin.php") {
+      if ($userRole !== "admin") {
+        header("Location: ../write.php");
+      }
+    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/editUser.php") {
+      if ($userRole !== "admin") {
+        header("Location: ../write.php");
+      }
+    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/deleteUser.php") {
+      if ($userRole !== "admin") {
+        header("Location: ../write.php");
+      }
+    }
+  } else
+    header("Location: /xml/login.php");
 }

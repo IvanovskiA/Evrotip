@@ -1,17 +1,7 @@
 <?php
 require_once("../db_conn.php");
-include_once("../functions/userUpdate_functions.php");
-if (!empty($_SESSION["iduser"])) {
-  $userid = $_SESSION["iduser"];
-  $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
-  $row = mysqli_fetch_assoc($result);
-  $userRole = $row["role"];
-  if ($userRole !== "Admin") {
-    header("Location: ../index.php");
-  }
-} else {
-  header("Location: ../login.php");
-}
+include_once("userUpdate_functions.php");
+blockRutes();
 $id = $_GET['id'];
 editUserFunction();
 
@@ -45,13 +35,13 @@ currentData();
     <div class="row">
       <div class="roleRadio">
         <label for="">Role</label> <br>
-        <input type="radio" name="role" id="read" value="Read" <?php echo ($row['role'] == 'Read') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="read" value="read" <?php echo ($row['role'] == 'Read') ? "checked" : ""; ?>>
         <label for="read">Read</label>
-        <input type="radio" name="role" id="write" value="Write" <?php echo ($row['role'] == 'Write') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="write" value="write" <?php echo ($row['role'] == 'Write') ? "checked" : ""; ?>>
         <label for="write">Write</label>
-        <input type="radio" name="role" id="admin" value="Admin" <?php echo ($row['role'] == 'Admin') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="admin" value="admin" <?php echo ($row['role'] == 'Admin') ? "checked" : ""; ?>>
         <label for="admin">Admin</label>
-        <input type="radio" name="role" id="read/write" value="Read/Write" <?php echo ($row['role'] == 'Read/Write') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="read/write" value="read/write" <?php echo ($row['role'] == 'Read/Write') ? "checked" : ""; ?>>
         <label for="admin">Read/Write</label>
       </div>
     </div>

@@ -1,16 +1,7 @@
 <?php
 require_once("../db_conn.php");
-if (!empty($_SESSION["iduser"])) {
-  $userid = $_SESSION["iduser"];
-  $result = mysqli_query($connection, "SELECT * FROM users WHERE id = $userid");
-  $row = mysqli_fetch_assoc($result);
-  $userRole = $row["role"];
-  if ($userRole !== "Admin") {
-    header("Location: ../index.php");
-  }
-} else {
-  header("Location: ../login.php");
-}
+require_once("../functions/included_functions.php");
+blockRutes();
 ?>
 <?php include_once("../components/header.php") ?>
 <div class="container">

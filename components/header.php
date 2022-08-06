@@ -14,12 +14,14 @@ switch ($pagetitle) {
     $path = "";
     break;
 }
+$userRole = "";
 require_once($path . "db_conn.php");
 if (isset($_SESSION["iduser"])) {
   $userid = $_SESSION["iduser"];
   $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
   $row = mysqli_fetch_assoc($result);
   $userRole = $row["role"];
+  $_SESSION["roleuser"] = $userRole;
 }
 ?>
 <!DOCTYPE html>
@@ -45,18 +47,24 @@ if (isset($_SESSION["iduser"])) {
 </head>
 
 <body>
+  <div style="color: white;">
+    <?php //$_SERVER['PHP_SELF']; 
+    ?>
+    <?php //"<br>" . $userRole; 
+    ?>
+  </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
   <nav>
     <input type="checkbox" id="check">
     <label for="check" class="checkbtn">
       <i class="fa-solid fa-bars"></i>
     </label>
-    <label class="logo"><a href="<?php echo $path . "index.php" ?>"><img src="<?php echo $path . "img/logo.png" ?>" alt=""></a></label>
+    <label class="logo"><a href="<?php echo $path . "write.php" ?>"><img src="<?php echo $path . "img/logo.png" ?>" alt=""></a></label>
     <ul>
       <li><a class="navTime"><?php if (!isset($userid)) {
                                 echo date("Y/m/d H:i - l");
                               } ?></a></li>
-      <li><a class="navLink" href="<?php echo $path . "index.php" ?>"><?php if (isset($userid)) {
+      <li><a class="navLink" href="<?php echo $path . "write.php" ?>"><?php if (isset($userid)) {
                                                                         echo "Zapisuvaj";
                                                                       } ?></a></li>
       <li><a class="navLink" href="<?php echo $path . "read.php" ?>"><?php if (isset($userid)) {
@@ -65,8 +73,8 @@ if (isset($_SESSION["iduser"])) {
       <li><a class="navLink" href="<?php echo $path . "logout.php" ?>"><?php if (isset($userid)) {
                                                                           echo "Odjava";
                                                                         } ?></a></li>
-      <li><a class="navLink" href="<?php echo $path . "admin/indexAdmin.php" ?>"><?php if (isset($userid) && $userRole === "Admin") {
-                                                                                    echo "Admin";
+      <li><a class="navLink" href="<?php echo $path . "admin/indexAdmin.php" ?>"><?php if (isset($userid) && $userRole === "admin") {
+                                                                                    echo "admin";
                                                                                   } ?></a></li>
     </ul>
   </nav>

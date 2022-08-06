@@ -1,4 +1,5 @@
 <?php
+require_once("included_functions.php");
 function searchByDate()
 {
   global $connection, $startDate, $endDate, $query, $message;
