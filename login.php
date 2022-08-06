@@ -9,6 +9,7 @@ logIn();
 <?php include_once("components/header.php"); ?>
 <div class="container">
   <form action="" method="POST" autocomplete="off">
+    <?php include("message.php"); ?>
     <div class="row">
       <div class="input-group">
         <input type="text" name="username/Email" id="username/Email" value="<?= $usernameemail ?>">
@@ -26,7 +27,6 @@ logIn();
       <a href="registration.php">Register</a>
     </div>
     <div class="row">
-      <?php include("message.php"); ?>
       <?= $errors ?>
     </div>
   </form>

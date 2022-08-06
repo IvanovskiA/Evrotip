@@ -42,7 +42,7 @@ function updateUserData()
 //current data in database
 function currentData()
 {
-  global $connection, $id;
+  global $connection, $id, $row;
   $query = "SELECT * FROM users WHERE  id = $id LIMIT 1";
   $result = mysqli_query($connection, $query);
   $row = mysqli_fetch_assoc($result);

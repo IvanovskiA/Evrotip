@@ -4,12 +4,10 @@ include_once("admin_functions.php");
 blockRutes();
 $id = $_GET['id'];
 editUserFunction();
-
-?>
-<?php include_once("../components/header.php") ?>
-<?php
 currentData();
 ?>
+<?php include_once("../components/header.php") ?>
+
 <div class="container">
   <form action="" method="POST">
     <div class="row">
@@ -35,13 +33,13 @@ currentData();
     <div class="row">
       <div class="roleRadio">
         <label for="">Role</label> <br>
-        <input type="radio" name="role" id="read" value="read" <?php echo ($row['role'] == 'Read') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="read" value="read" <?php echo ($row['role'] == 'read') ? "checked" : ""; ?>>
         <label for="read">Read</label>
-        <input type="radio" name="role" id="write" value="write" <?php echo ($row['role'] == 'Write') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="write" value="write" <?php echo ($row['role'] == 'write') ? "checked" : ""; ?>>
         <label for="write">Write</label>
-        <input type="radio" name="role" id="admin" value="admin" <?php echo ($row['role'] == 'Admin') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="admin" value="admin" <?php echo ($row['role'] == 'admin') ? "checked" : ""; ?>>
         <label for="admin">Admin</label>
-        <input type="radio" name="role" id="read/write" value="read/write" <?php echo ($row['role'] == 'Read/Write') ? "checked" : ""; ?>>
+        <input type="radio" name="role" id="read/write" value="read/write" <?php echo ($row['role'] == 'read/write') ? "checked" : ""; ?>>
         <label for="admin">Read/Write</label>
       </div>
     </div>
