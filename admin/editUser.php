@@ -1,6 +1,6 @@
 <?php
 require_once("../db_conn.php");
-include_once("userUpdate_functions.php");
+include_once("admin_functions.php");
 blockRutes();
 $id = $_GET['id'];
 editUserFunction();

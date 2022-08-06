@@ -47,3 +47,17 @@ function currentData()
   $result = mysqli_query($connection, $query);
   $row = mysqli_fetch_assoc($result);
 }
+
+//delete user function
+function deleteUser()
+{
+  global $connection;
+  $id = $_GET['id'];
+  $query = "DELETE FROM users WHERE id = $id";
+  $result = mysqli_query($connection, $query);
+  if ($result) {
+    header("Location: indexAdmin.php?msg=User deleted successfylly");
+  } else {
+    echo "Failed: " . mysqli_error($connection);
+  }
+}

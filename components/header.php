@@ -1,6 +1,6 @@
 <?php
-require_once("functions/included_functions.php");
 dynamicTitleAndPath();
+// include($path . "functions/included_functions.php");
 require_once($path . "db_conn.php");
 userRoleAndId();
 ?>
