@@ -1,14 +1,15 @@
 <?php
 require_once("../functions/included_functions.php");
 
+// collecting data from edit user form
 function editUserFunction()
 {
   global $error_array, $connection, $name, $username, $email, $password, $role;
   if (isset($_POST["submit"])) {
-    $name = mysqli_real_escape_string($connection, test_input($_POST["name"]));
-    $username = mysqli_real_escape_string($connection, test_input($_POST["username"]));
-    $email = mysqli_real_escape_string($connection, test_input($_POST["email"]));
-    $password = mysqli_real_escape_string($connection, test_input($_POST["password"]));
+    $name = protection($connection, $_POST["name"]);
+    $username = protection($connection, $_POST["username"]);
+    $email = protection($connection, $_POST["email"]);
+    $password = protection($connection, $_POST["password"]);
     $role = $_POST["role"];
 
     $required_fields = array("name", "username", "password", "email");
@@ -16,7 +17,7 @@ function editUserFunction()
 
 
     if (empty($error_array)) {
-      checkingUserUpdateData();
+      updateUserData();
       errors($error_array);
     } else {
       errors($error_array);
@@ -24,7 +25,8 @@ function editUserFunction()
   }
 }
 
-function checkingUserUpdateData()
+// update user data if error array is empty
+function updateUserData()
 {
   global $connection, $name, $username, $password, $email, $role, $id, $error_array;
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
@@ -37,6 +39,7 @@ function checkingUserUpdateData()
   }
 }
 
+//current data in database
 function currentData()
 {
   global $connection, $id;

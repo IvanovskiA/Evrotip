@@ -9,6 +9,11 @@ function test_input($data)
   return $data;
 }
 
+function protection($db, $data)
+{
+  return mysqli_real_escape_string($db, test_input($data));
+}
+
 function has_presence($value)
 {
   return isset($value) && $value !== "";
@@ -83,4 +88,38 @@ function blockRutes()
     }
   } else
     header("Location: /xml/login.php");
+}
+
+// dynamic title and path if we are in admin pages
+function dynamicTitleAndPath()
+{
+  global $title, $path;
+  $pagetitle = $_SERVER["PHP_SELF"];
+  switch ($pagetitle) {
+    case "/xml/admin/indexAdmin.php":
+      $title = "Evrotip Users";
+      $path = "../";
+      break;
+    case "/xml/admin/editUser.php":
+      $title = "Evrotip Users";
+      $path = "../";
+      break;
+    default:
+      $title = "Evrotip Dobitnici";
+      $path = "";
+      break;
+  }
+}
+
+// userAuthentication
+function userRoleAndId()
+{
+  global $connection, $userid, $userRole;
+  if (isset($_SESSION["iduser"])) {
+    $userid = $_SESSION["iduser"];
+    $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
+    $row = mysqli_fetch_assoc($result);
+    $userRole = $row["role"];
+    $_SESSION["roleuser"] = $userRole;
+  }
 }

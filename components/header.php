@@ -1,28 +1,8 @@
 <?php
-$pagetitle = $_SERVER["PHP_SELF"];
-switch ($pagetitle) {
-  case "/xml/admin/indexAdmin.php":
-    $title = "Evrotip Users";
-    $path = "../";
-    break;
-  case "/xml/admin/editUser.php":
-    $title = "Evrotip Users";
-    $path = "../";
-    break;
-  default:
-    $title = "Evrotip Dobitnici";
-    $path = "";
-    break;
-}
-$userRole = "";
+require_once("functions/included_functions.php");
+dynamicTitleAndPath();
 require_once($path . "db_conn.php");
-if (isset($_SESSION["iduser"])) {
-  $userid = $_SESSION["iduser"];
-  $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
-  $row = mysqli_fetch_assoc($result);
-  $userRole = $row["role"];
-  $_SESSION["roleuser"] = $userRole;
-}
+userRoleAndId();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,12 +27,6 @@ if (isset($_SESSION["iduser"])) {
 </head>
 
 <body>
-  <div style="color: white;">
-    <?php //$_SERVER['PHP_SELF']; 
-    ?>
-    <?php //"<br>" . $userRole; 
-    ?>
-  </div>
   <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
   <nav>
     <input type="checkbox" id="check">

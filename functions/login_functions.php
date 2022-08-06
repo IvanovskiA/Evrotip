@@ -1,6 +1,7 @@
 <?php
 require_once("included_functions.php");
 $errors = $usernameemail = $password = "";
+// login function
 function logIn()
 {
   global $connection, $error_array, $usernameemail, $password;
@@ -8,8 +9,8 @@ function logIn()
     header("Location: write.php");
   }
   if (isset($_POST["submit"])) {
-    $usernameemail = mysqli_real_escape_string($connection, test_input($_POST["username/Email"]));
-    $password = mysqli_real_escape_string($connection, test_input($_POST["password"]));
+    $usernameemail = protection($connection, $_POST["username/Email"]);
+    $password = protection($connection, $_POST["password"]);
 
     $required_fields = array("username/Email", "password");
     hasPresence_emailValidation($required_fields);
@@ -23,6 +24,7 @@ function logIn()
   }
 }
 
+// function for checking data inserted in login form
 function checkingLoginData()
 {
   global $error_array, $usernameemail, $password, $connection;

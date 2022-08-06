@@ -10,6 +10,9 @@ printingTable();
 <?php include_once("components/header.php") ?>
 <div class="container">
   <form action="" method="POST">
+    <div class="fieldsMessage">
+      <p><i> (mm/dd/yyyy)</i></p>
+    </div>
     <div class="row">
       <div class="input-group">
         <input type="date" name="txtStartDate" id="od" value="<?php echo $startDate; ?>">

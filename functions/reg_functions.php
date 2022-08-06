@@ -9,11 +9,11 @@ function registration()
   }
   global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
   if (isset($_POST["submit"])) {
-    $name = mysqli_real_escape_string($connection, test_input($_POST["name"]));
-    $username = mysqli_real_escape_string($connection, test_input($_POST["username"]));
-    $email = mysqli_real_escape_string($connection, test_input($_POST["email"]));
-    $password = mysqli_real_escape_string($connection, test_input($_POST["password"]));
-    $confirmpassword = mysqli_real_escape_string($connection, test_input($_POST["confirmpassword"]));
+    $name = protection($connection, $_POST["name"]);
+    $username = protection($connection, $_POST["username"]);
+    $email = protection($connection, $_POST["email"]);
+    $password = protection($connection, $_POST["password"]);
+    $confirmpassword = protection($connection, $_POST["confirmpassword"]);
 
     $required_fields = array("name", "username", "email", "password", "confirmpassword");
 
@@ -27,6 +27,8 @@ function registration()
     }
   }
 }
+
+// function for checking data inserted in registration form
 function checkingRegistrationData()
 {
   global $connection, $name, $username, $email, $password, $confirmpassword, $error_array;
@@ -39,6 +41,7 @@ function checkingRegistrationData()
       $query = "INSERT INTO users (name,username,email,password)
               VALUES('$name','$username','$email','$password')";
       mysqli_query($connection, $query);
+      header("Location: login.php?msg=Registration successuly - now login");
       return $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
     } else {
       return $error_array["registration"] = "failed - passwords does not match";

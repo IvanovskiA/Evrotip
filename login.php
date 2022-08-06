@@ -23,6 +23,7 @@ logIn();
       <a href="registration.php">Register</a>
     </div>
     <div class="row">
+      <?php include("message.php"); ?>
       <?= $errors ?>
     </div>
   </form>

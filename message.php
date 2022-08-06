@@ -5,4 +5,5 @@ if (isset($_GET['msg'])) {
         <span class="closebtn">&times;</span>  
         ' . $msg . '
       </div>';
+  unset($_GET['msg']);
 }

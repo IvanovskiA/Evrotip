@@ -1,33 +1,21 @@
 <?php
 require_once("included_functions.php");
-function checkingXmlStructure()
+// Collecting form data
+function submitIndexForm()
 {
-  global $referenceNo, $dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode, $transactionDate, $dataToDatePreg, $dataFromDatePreg, $dateCreatedPreg, $connection;
-  if (isset($dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)) {
-    $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
-            VALUES ('$referenceNo','$dateCreated','$dataFromDate','$dataToDate',$personObjectId,$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$isoType,$isoCode,'$transactionDate')
-            ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$isoType,`ISOCode`=$isoCode";
-    $result = mysqli_query($connection, $query);
-    if ($result) {
-      return true;
-    } else {
-      return false;
-    }
+  global $fileCount, $mydir, $acceptedext;
+  if (isset($_POST['submit'])) {
+    $godina = $_POST['godina'];
+    $mesec = $_POST['mesec'];
+    $mydir = "$godina/$mesec/";
+    $fileCount = count($_FILES['file']['name']);
+    $acceptedext = array("xml");
+    takeData();
   }
 }
 
-function folderExists()
-{
-  global $mydir, $fileName, $fileTmpName;
-  if (!file_exists($mydir)) {
-    mkdir($mydir, 0777, true);
-    move_uploaded_file($fileTmpName, $mydir . $fileName);
-  } else {
-    move_uploaded_file($fileTmpName, $mydir . $fileName);
-  }
-}
-
-function fetchAndWriteData()
+// takeing data from xml file
+function takeData()
 {
   global $fileCount, $fileName, $fileTmpName, $acceptedext, $dom, $message, $referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg,
     $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode;
@@ -74,15 +62,32 @@ function fetchAndWriteData()
   }
 }
 
-function submitIndexForm()
+
+// checking XML structure
+function checkingXmlStructure()
 {
-  global $fileCount, $mydir, $acceptedext;
-  if (isset($_POST['submit'])) {
-    $godina = $_POST['godina'];
-    $mesec = $_POST['mesec'];
-    $mydir = "$godina/$mesec/";
-    $fileCount = count($_FILES['file']['name']);
-    $acceptedext = array("xml");
-    fetchAndWriteData();
+  global $referenceNo, $dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode, $transactionDate, $dataToDatePreg, $dataFromDatePreg, $dateCreatedPreg, $connection;
+  if (isset($dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)) {
+    $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
+            VALUES ('$referenceNo','$dateCreated','$dataFromDate','$dataToDate',$personObjectId,$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$isoType,$isoCode,'$transactionDate')
+            ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$isoType,`ISOCode`=$isoCode";
+    $result = mysqli_query($connection, $query);
+    if ($result) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+// move files in folder or creating folder if exist and move in folder 
+function folderExists()
+{
+  global $mydir, $fileName, $fileTmpName;
+  if (!file_exists($mydir)) {
+    mkdir($mydir, 0777, true);
+    move_uploaded_file($fileTmpName, $mydir . $fileName);
+  } else {
+    move_uploaded_file($fileTmpName, $mydir . $fileName);
   }
 }

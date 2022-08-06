@@ -1,5 +1,6 @@
 <?php
 require_once("included_functions.php");
+// function for changing query
 function searchByDate()
 {
   global $connection, $startDate, $endDate, $query, $message;
@@ -14,6 +15,7 @@ function searchByDate()
     $message = "Popolnete gi dvete (datum) polinja za prikaz na barani dobitnici!";
   }
 }
+// print table function
 function printingTable()
 {
   global $connection, $query, $table;
@@ -68,6 +70,7 @@ function printingTable()
 </table>';
   return $table;
 }
+// function for submited form in read page
 function searchingWinners()
 {
   global $startDate, $endDate;
@@ -79,6 +82,8 @@ function searchingWinners()
     searchByDate();
   }
 }
+
+// default query and date in read
 function defaultValues()
 {
   global $message, $query, $endDate, $startDate;
