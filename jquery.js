@@ -9,10 +9,10 @@ $("document").ready(function () {
 	$(".searchresult table").css("width", "100%");
 });
 $(".navLink").hover(function () {
-	$(this).css("background-color", "grey");
-	$(this).css("color", "black");
+	// $(this).css("background-color", "grey");
+	$(this).css("color", "lightgray");
 }, function () {
-	$(this).css("background-color", "transparent");
+	// $(this).css("background-col/or", "transparent");
 	$(this).css("color", "white");
 });
 
