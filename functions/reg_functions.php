@@ -4,7 +4,7 @@ $errors = $name = $username = $email = $password = $confirmpassword = "";
 // Registration functions
 function registration()
 {
-  if (isset($_SESSION["iduser"])) {
+  if (!empty($_SESSION["iduser"])) {
     header("Location: write.php");
   }
   global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
@@ -16,11 +16,10 @@ function registration()
     $confirmpassword = protection($connection, $_POST["confirmpassword"]);
 
     $required_fields = array("name", "username", "email", "password", "confirmpassword");
-
     hasPresence_emailValidation($required_fields);
 
     if (empty($error_array)) {
-      checkingRegistrationData();
+      checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword, $error_array);
       errors($error_array);
     } else {
       errors($error_array);
@@ -29,9 +28,8 @@ function registration()
 }
 
 // function for checking data inserted in registration form
-function checkingRegistrationData()
+function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword, $error_array)
 {
-  global $connection, $name, $username, $email, $password, $confirmpassword, $error_array;
   $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
   if (mysqli_num_rows($duplicate) > 0) {
     return $error_array["registration:"] = "failed - username or email already taken";

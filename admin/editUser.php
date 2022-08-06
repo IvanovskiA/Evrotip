@@ -2,7 +2,7 @@
 require_once("../db_conn.php");
 include_once("admin_functions.php");
 blockRutes();
-$id = $_GET['id'];
+$id = $_GET["id"];
 editUserFunction();
 currentData();
 ?>

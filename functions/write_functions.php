@@ -57,7 +57,7 @@ function takeData()
           continue (2);
         }
       }
-      folderExists();
+      folderExists($fileName, $fileTmpName);
     }
   }
 }
@@ -81,9 +81,10 @@ function checkingXmlStructure()
 }
 
 // move files in folder or creating folder if exist and move in folder 
-function folderExists()
+// function folderExists($mydir, $fileName, $fileTmpName)
+function folderExists($fileName, $fileTmpName)
 {
-  global $mydir, $fileName, $fileTmpName;
+  global $mydir;
   if (!file_exists($mydir)) {
     mkdir($mydir, 0777, true);
     move_uploaded_file($fileTmpName, $mydir . $fileName);

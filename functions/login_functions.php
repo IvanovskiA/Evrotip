@@ -5,7 +5,7 @@ $errors = $usernameemail = $password = "";
 function logIn()
 {
   global $connection, $error_array, $usernameemail, $password;
-  if (isset($_SESSION["iduser"])) {
+  if (!empty($_SESSION["iduser"])) {
     header("Location: write.php");
   }
   if (isset($_POST["submit"])) {
@@ -16,7 +16,7 @@ function logIn()
     hasPresence_emailValidation($required_fields);
 
     if (empty($error_array)) {
-      checkingLoginData();
+      checkingLoginData($error_array, $usernameemail, $password, $connection);
       errors($error_array);
     } else {
       errors($error_array);
@@ -25,9 +25,8 @@ function logIn()
 }
 
 // function for checking data inserted in login form
-function checkingLoginData()
+function checkingLoginData($error_array, $usernameemail, $password, $connection)
 {
-  global $error_array, $usernameemail, $password, $connection;
   $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
   $row = mysqli_fetch_assoc($result);
   if (mysqli_num_rows($result) > 0) {

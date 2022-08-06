@@ -1,9 +1,6 @@
 <?php
 require_once("db_conn.php");
 include_once("functions/reg_functions.php");
-if (!empty($_SESSION["iduser"])) {
-  header("Location: write.php");
-}
 registration();
 ?>
 <?php include_once("components/header.php") ?>
