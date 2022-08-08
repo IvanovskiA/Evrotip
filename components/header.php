@@ -1,8 +1,6 @@
 <?php
-dynamicTitleAndPath();
-// include($path . "functions/included_functions.php");
+// include($path . "functions/included_functions.php");   
 require_once($path . "db_conn.php");
-userRoleAndId();
 ?>
 <!DOCTYPE html>
 <html lang="en">

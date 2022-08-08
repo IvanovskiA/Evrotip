@@ -1,13 +1,8 @@
 <?php
 require_once("db_conn.php");
 require_once("functions/read_functions.php");
-blockRutes();
-defaultValues();
-searchingWinners();
-printingTable();
+include_once("components/header.php")
 ?>
-
-<?php include_once("components/header.php") ?>
 <div class="container">
   <form action="" method="POST">
     <div class="fieldsMessage">

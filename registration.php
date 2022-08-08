@@ -1,9 +1,8 @@
 <?php
 require_once("db_conn.php");
 include_once("functions/reg_functions.php");
-registration();
+include_once("components/header.php");
 ?>
-<?php include_once("components/header.php") ?>
 <div class="container">
   <form action="" method="POST" autocomplete="off">
     <div class="fieldsMessage">

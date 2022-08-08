@@ -1,14 +1,8 @@
 <?php
 require_once("db_conn.php");
 require_once("functions/write_functions.php");
-// blockRutes();
-$message = "";
-$dom = new DOMDocument();
-$dom->preserveWhiteSpace = false;
-blockRutes();
-submitIndexForm();
+include_once("components/header.php");
 ?>
-<?php include_once("components/header.php") ?>
 <div class="container">
   <div class="form">
     <form action="" method="POST" enctype="multipart/form-data">

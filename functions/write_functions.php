@@ -1,24 +1,28 @@
 <?php
 require_once("included_functions.php");
+$message = "";
+submitIndexForm();
+
 // Collecting form data
 function submitIndexForm()
 {
-  global $fileCount, $mydir, $acceptedext;
   if (isset($_POST['submit'])) {
+    global $mydir;
     $godina = $_POST['godina'];
     $mesec = $_POST['mesec'];
     $mydir = "$godina/$mesec/";
     $fileCount = count($_FILES['file']['name']);
     $acceptedext = array("xml");
-    takeData();
+    takeData($fileCount, $acceptedext);
   }
 }
 
 // takeing data from xml file
-function takeData()
+function takeData($fileCount, $acceptedext)
 {
-  global $fileCount, $fileName, $fileTmpName, $acceptedext, $dom, $message, $referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg,
-    $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode;
+  global $message;
+  $dom = new DOMDocument();
+  $dom->preserveWhiteSpace = false;
   for ($i = 0; $i < $fileCount; $i++) {
     $fileName = $_FILES['file']['name'][$i];
     $fileTmpName = $_FILES['file']['tmp_name'][$i];
@@ -51,8 +55,8 @@ function takeData()
         $isoType = $person->getElementsByTagName('ISOType')->item(0)->nodeValue;
         $isoCode = $person->getElementsByTagName('ISOCode')->item(0)->nodeValue;
 
-        checkingXmlStructure();
-        if (!checkingXmlStructure()) {
+        checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode);
+        if (!checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)) {
           $message .= $fileName . " Element exist!";
           continue (2);
         }
@@ -64,9 +68,9 @@ function takeData()
 
 
 // checking XML structure
-function checkingXmlStructure()
+function checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)
 {
-  global $referenceNo, $dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode, $transactionDate, $dataToDatePreg, $dataFromDatePreg, $dateCreatedPreg, $connection;
+  global $connection;
   if (isset($dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)) {
     $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
             VALUES ('$referenceNo','$dateCreated','$dataFromDate','$dataToDate',$personObjectId,$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$isoType,$isoCode,'$transactionDate')

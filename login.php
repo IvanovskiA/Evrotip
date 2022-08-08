@@ -1,9 +1,8 @@
 <?php
 require_once("db_conn.php");
-include_once("functions/login_functions.php");
-logIn();
+require_once("functions/login_functions.php");
+include_once("components/header.php");
 ?>
-<?php include_once("components/header.php"); ?>
 <div class="container">
   <form action="" method="POST" autocomplete="off">
     <?php include("message.php"); ?>

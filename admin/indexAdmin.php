@@ -1,9 +1,8 @@
 <?php
 require_once("../db_conn.php");
 require_once("../functions/included_functions.php");
-blockRutes();
+require_once("../components/header.php");
 ?>
-<?php include_once("../components/header.php") ?>
 <div class="container">
   <div class="searchresult" style="padding-top: 50px;">
     <?php include("../message.php"); ?>

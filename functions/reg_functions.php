@@ -1,10 +1,11 @@
 <?php
 require_once("included_functions.php");
 $errors = $name = $username = $email = $password = $confirmpassword = "";
+registration();
 // Registration functions
 function registration()
 {
-  if (!empty($_SESSION["iduser"])) {
+  if (isset($_SESSION["iduser"])) {
     header("Location: write.php");
   }
   global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
@@ -19,7 +20,7 @@ function registration()
     hasPresence_emailValidation($required_fields);
 
     if (empty($error_array)) {
-      checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword, $error_array);
+      checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword);
       errors($error_array);
     } else {
       errors($error_array);
@@ -28,11 +29,12 @@ function registration()
 }
 
 // function for checking data inserted in registration form
-function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword, $error_array)
+function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword)
 {
+  global $error_array;
   $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
   if (mysqli_num_rows($duplicate) > 0) {
-    return $error_array["registration:"] = "failed - username or email already taken";
+    $error_array["registration:"] = "failed - username or email already taken";
   } else {
     if ($password == $confirmpassword) {
       // $password = password_hash($password, PASSWORD_BCRYPT);
@@ -40,9 +42,9 @@ function checkingRegistrationData($connection, $name, $username, $email, $passwo
               VALUES('$name','$username','$email','$password')";
       mysqli_query($connection, $query);
       header("Location: login.php?msg=Registration successuly - now login");
-      return $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
+      $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
     } else {
-      return $error_array["registration"] = "failed - passwords does not match";
+      $error_array["registration"] = "failed - passwords does not match";
     }
   }
 }

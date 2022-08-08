@@ -1,4 +1,11 @@
 <?php
+if ($_SERVER['PHP_SELF'] !== "/xml/login.php" && $_SERVER['PHP_SELF'] !== "/xml/registration.php") {
+  blockRutes();
+}
+// blockRutes();
+dynamicTitleAndPath();
+userRoleAndId();
+
 // Validation functions
 $error_array = array();
 function test_input($data)
@@ -25,9 +32,8 @@ function validationEmail($value)
 }
 
 // Display errors function
-function errors($error_array = array())
+function errors($error_array)
 {
-  global $error_array;
   if (!empty($error_array)) {
     global $errors;
     $errors .= '<div class="alert info">
@@ -59,7 +65,6 @@ function hasPresence_emailValidation($array)
     }
   }
 }
-
 // userRole function
 function blockRutes()
 {
@@ -86,8 +91,9 @@ function blockRutes()
         header("Location: ../write.php");
       }
     }
-  } else
+  } else {
     header("Location: /xml/login.php");
+  }
 }
 
 // dynamic title and path if we are in admin pages
@@ -115,7 +121,7 @@ function dynamicTitleAndPath()
 function userRoleAndId()
 {
   global $connection, $userid, $userRole;
-  if (isset($_SESSION["iduser"])) {
+  if (!empty($_SESSION["iduser"])) {
     $userid = $_SESSION["iduser"];
     $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
     $row = mysqli_fetch_assoc($result);

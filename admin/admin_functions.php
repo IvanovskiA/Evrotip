@@ -1,7 +1,9 @@
 <?php
 require_once("../functions/included_functions.php");
-
+editUserFunction();
+currentData();
 // collecting data from edit user form
+$id = $_GET['id'];
 function editUserFunction()
 {
   global $error_array, $connection, $name, $username, $email, $password, $role;
@@ -11,13 +13,12 @@ function editUserFunction()
     $email = protection($connection, $_POST["email"]);
     $password = protection($connection, $_POST["password"]);
     $role = $_POST["role"];
-    $id = $_GET['id'];
     $required_fields = array("name", "username", "password", "email");
     hasPresence_emailValidation($required_fields);
 
 
     if (empty($error_array)) {
-      updateUserData($connection, $name, $username, $password, $email, $role, $id, $error_array);
+      updateUserData($connection, $name, $username, $password, $email, $role, $error_array);
       errors($error_array);
     } else {
       errors($error_array);
@@ -26,9 +27,10 @@ function editUserFunction()
 }
 
 // update user data if error array is empty
-function updateUserData($connection, $name, $username, $password, $email, $role, $id, $error_array)
+function updateUserData($connection, $name, $username, $password, $email, $role, $error_array)
 {
-  $id = $_GET['id'];
+  global $id;
+  // $id = $_GET['id'];
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {
@@ -51,7 +53,8 @@ function currentData()
 //delete user function
 function deleteUser($connection)
 {
-  $id = $_GET['id'];
+  global $id;
+  // $id = $_GET['id'];
   $query = "DELETE FROM users WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {

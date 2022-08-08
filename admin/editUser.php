@@ -1,13 +1,8 @@
 <?php
 require_once("../db_conn.php");
-include_once("admin_functions.php");
-blockRutes();
-$id = $_GET["id"];
-editUserFunction();
-currentData();
+require_once("admin_functions.php");
+require_once("../components/header.php");
 ?>
-<?php include_once("../components/header.php") ?>
-
 <div class="container">
   <form action="" method="POST">
     <div class="row">
