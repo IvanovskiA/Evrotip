@@ -29,7 +29,6 @@ function editUserFunction()
 function updateUserData($connection, $name, $username, $password, $email, $role, $id, $error_array)
 {
   $id = $_GET['id'];
-  global $connection, $name, $username, $password, $email, $role, $id, $error_array;
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {
