@@ -177,6 +177,11 @@ footer a:hover {
   label.logo {
     font-size: 30px;
     padding-left: 50px;
+    /* margin-top: -170px; */
+  }
+
+  .logo a img {
+    margin-top: -150px;
   }
 
   nav ul li a {
@@ -239,7 +244,6 @@ div.dataTables_wrapper {
   width: 90%;
   margin: auto;
 }
-
 
 .divWinnerImg .row img,
 .divWinnerImg .row p {
@@ -368,7 +372,7 @@ form {
   font-size: 20px;
   color: #550A21;
   background-color: white;
-  width: 40%;
+  width: 60%;
   text-align: center;
   margin: auto;
   margin-bottom: 40px;

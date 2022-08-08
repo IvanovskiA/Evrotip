@@ -2,7 +2,6 @@
 if ($_SERVER['PHP_SELF'] !== "/xml/login.php" && $_SERVER['PHP_SELF'] !== "/xml/registration.php") {
   blockRutes();
 }
-// blockRutes();
 dynamicTitleAndPath();
 userRoleAndId();
 

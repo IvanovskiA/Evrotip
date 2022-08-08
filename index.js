@@ -35,11 +35,11 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 
-$(function () {
-  $('select option').each(function () {
-    $(this).sibilings("[value=" + this.value + "]").remove();
-  });
-});
+// $(function () {
+//   $('select option').each(function () {
+//     $(this).sibilings("[value=" + this.value + "]").remove();
+//   });
+// });
 
 var optionValues = [];
 $('select option').each(function () {
