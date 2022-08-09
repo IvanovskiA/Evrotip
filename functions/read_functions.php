@@ -24,7 +24,7 @@ function printingTable()
   global $connection, $query, $table;
   $result = mysqli_query($connection, $query);
   $table = '
-<table class="content-table display responsive nowrap" border="1px">
+<table  class="content-table" style="width:100%" border="1px">
   <thead>
     <tr class="active">
       <th>#</th>

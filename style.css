@@ -38,7 +38,6 @@ body {
 }
 
 nav {
-  /* display: none; jquery */
   background: #550A21;
   height: 100px;
   width: 100%;
@@ -201,7 +200,7 @@ footer a:hover {
     display: block;
   }
 
-  ul {
+  nav ul {
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -242,13 +241,13 @@ footer a:hover {
 }
 
 .container {
+  min-width: 450px;
   max-width: 76%;
   margin: auto;
   height: auto;
   min-height: 900px;
   background-image: url(img/background.jpg);
   background-position: center;
-  /* display: none; jquery */
 }
 
 
@@ -339,7 +338,6 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 .form {
-  /* display: none; jquery */
   margin: auto;
   margin-top: 100px;
 }
@@ -481,8 +479,6 @@ form {
   text-decoration: none;
 }
 
-
-
 .roleRadio {
   color: white;
   text-align: center;
@@ -559,7 +555,6 @@ form {
 
 @media (max-width: 518px) {
   #dateDiv .input-group {
-    /* margin: auto; */
     margin: 30px auto 20px;
   }
 }
