@@ -4,29 +4,31 @@ require_once("functions/read_functions.php");
 include_once("components/header.php")
 ?>
 <div class="container">
-  <form action="" method="POST">
-    <div class="fieldsMessage">
-      <p><i> (mm/dd/yyyy)</i></p>
-    </div>
-    <div class="row">
-      <div class="input-group">
-        <input type="date" name="txtStartDate" id="od" value="<?php echo $startDate; ?>">
-        <label for="od">Odberete od:</label>
+  <div class="form">
+    <form action="" method="POST">
+      <div class="fieldsMessage">
+        <p><i> (mm/dd/yyyy)</i></p>
       </div>
-      <div class="input-group">
-        <input type="date" name="txtEndDate" id="do" value="<?php echo $endDate; ?>">
-        <label for="do">Odberete do:</label>
+      <div class="row" id="dateDiv">
+        <div class="input-group">
+          <input type="date" name="txtStartDate" id="od" value="<?php echo $startDate; ?>">
+          <label for="od">Odberete od:</label>
+        </div>
+        <div class="input-group">
+          <input type="date" name="txtEndDate" id="do" value="<?php echo $endDate; ?>">
+          <label for="do">Odberete do:</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-group">
-        <button type="submit" name="submit" value="submit">Submit</button>
+      <div class="row">
+        <div class="input-group">
+          <button type="submit" name="submit" value="submit">Submit</button>
+        </div>
+        <div class="input-group">
+          <a href="read.php"><button>All winners</button></a>
+        </div>
       </div>
-      <div class="input-group">
-        <a href="read.php"><button>All winners</button></a>
-      </div>
-    </div>
-  </form>
+    </form>
+  </div>
   <div class="searchresult">
     <?php if ($message === "") {
       echo $table;

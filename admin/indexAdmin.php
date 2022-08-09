@@ -4,7 +4,7 @@ require_once("../functions/included_functions.php");
 require_once("../components/header.php");
 ?>
 <div class="container">
-  <div class="searchresult" style="padding-top: 50px;">
+  <div class="searchresult">
     <?php include("../message.php"); ?>
     <table class="content-table" border="1px">
       <thead>

@@ -10,10 +10,10 @@ $("document").ready(function () {
 });
 $(".navLink").hover(function () {
 	// $(this).css("background-color", "grey");
-	$(this).css("color", "lightgray");
+	// $(this).css("color", "lightgray");
 }, function () {
 	// $(this).css("background-col/or", "transparent");
-	$(this).css("color", "white");
+	// $(this).css("color", "white");
 });
 
 // $("document").ready(function () {
