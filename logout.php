@@ -1,5 +1,5 @@
 <?php
-require_once("db_conn.php");
+require_once("dataBase/db_conn.php");
 $_SESSION = [];
 session_unset();
 session_destroy();

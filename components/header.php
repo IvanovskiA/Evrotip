@@ -1,6 +1,6 @@
 <?php
 // include($path . "functions/included_functions.php");   
-require_once($path . "db_conn.php");
+require_once($path . "dataBase/db_conn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,13 +17,13 @@ require_once($path . "db_conn.php");
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
-  <link rel="stylesheet" href="<?php echo $path . "style.css"; ?>">
+  <link rel="stylesheet" href="<?php echo $path . "assets/style.css"; ?>">
 </head>
 
 <body>
-  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
   <nav>
-    <label class="logo"><a href="<?php echo $path . "write.php" ?>"><img src="<?php echo $path . "img/logo.png" ?>" alt=""></a></label>
+    <label class="logo"><a href="<?php echo $path . "write.php" ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt=""></a></label>
     <div class="navbarLinks">
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">

@@ -29,7 +29,7 @@ include_once("components/header.php");
   </div>
   <div class="divWinnerImg">
     <div class="row" style="margin-top: -150px;">
-      <img class="imgWinner" src="img/giphy.gif" alt="">
+      <img class="imgWinner" src="assets/img/giphy.gif" alt="">
     </div>
   </div>
 </div>
