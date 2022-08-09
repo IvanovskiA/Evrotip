@@ -247,7 +247,7 @@ footer a:hover {
   min-height: 900px;
   margin: auto;
   padding-bottom: 10px;
-  background-image: url(img/background2.jpg);
+  background-image: url(/xml/assets/img/background2.jpg);
   /* background-color: yellow; */
   background-position: center;
 }

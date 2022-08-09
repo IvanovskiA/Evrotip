@@ -17,7 +17,7 @@ require_once($path . "dataBase/db_conn.php");
   <link rel="stylesheet" href="https://cdn.datatables.net/rowreorder/1.2.8/css/rowReorder.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="<?php echo $path . "assets/style.css"; ?>">
+  <link rel="stylesheet" href="<?php echo $path . "assets/css/style.css"; ?>">
 </head>
 
 <body>

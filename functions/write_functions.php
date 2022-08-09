@@ -10,7 +10,7 @@ function submitIndexForm()
     global $mydir;
     $godina = $_POST['godina'];
     $mesec = $_POST['mesec'];
-    $mydir = "$godina/$mesec/";
+    $mydir = "uploads/$godina/$mesec/";
     $fileCount = count($_FILES['file']['name']);
     $acceptedext = array("xml");
     takeData($fileCount, $acceptedext);

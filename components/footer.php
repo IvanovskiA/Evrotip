@@ -24,8 +24,8 @@ dynamicTitleAndPath();
 <script type="text/javascript" src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-<script type="text/javascript" src="<?php echo $path . "index.js" ?>"></script>
-<script type="text/javascript" src="<?php echo $path . "jquery.js" ?>"></script>
+<script type="text/javascript" src="<?php echo $path . "assets/js/index.js" ?>"></script>
+<script type="text/javascript" src="<?php echo $path . "assets/js/jquery.js" ?>"></script>
 
 
 
