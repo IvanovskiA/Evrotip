@@ -1,9 +1,10 @@
 <?php
 require_once("../functions/included_functions.php");
+$id = $_GET['id'];
+$errors = "";
 editUserFunction();
 currentData();
 // collecting data from edit user form
-$id = $_GET['id'];
 function editUserFunction()
 {
   global $error_array, $connection, $name, $username, $email, $password, $role;
@@ -30,11 +31,10 @@ function editUserFunction()
 function updateUserData($connection, $name, $username, $password, $email, $role, $error_array)
 {
   global $id;
-  // $id = $_GET['id'];
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {
-    header("Location: indexAdmin.php?msg=User data update successfully ");
+    header("Location: indexAdmin.php?msg=User data update successfully");
   } else {
     $errmsg = mysqli_error($connection);
     return $error_array['Failed: '] = "$errmsg";
