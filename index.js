@@ -1,6 +1,9 @@
 // Jquery table script
 $(document).ready(function () {
   $("table").DataTable({
+    rowReorder: {
+      selector: 'td:nth-child(2)'
+    },
     responsive: true,
     "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     "language": {

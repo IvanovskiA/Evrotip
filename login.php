@@ -1,5 +1,4 @@
 <?php
-require_once("db_conn.php");
 require_once("functions/login_functions.php");
 include_once("components/header.php");
 ?>

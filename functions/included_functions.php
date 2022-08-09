@@ -1,8 +1,9 @@
 <?php
+dynamicTitleAndPath();
+require_once($path . "db_conn.php");
 if ($_SERVER['PHP_SELF'] !== "/xml/login.php" && $_SERVER['PHP_SELF'] !== "/xml/registration.php") {
   blockRutes();
 }
-dynamicTitleAndPath();
 userRoleAndId();
 
 // Validation functions

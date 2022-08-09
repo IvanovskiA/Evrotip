@@ -1,12 +1,11 @@
 <?php
-require_once("../db_conn.php");
 require_once("../functions/included_functions.php");
 require_once("../components/header.php");
 ?>
 <div class="container">
   <div class="searchresult">
     <?php include("../message.php"); ?>
-    <table class="content-table" border="1px">
+    <table class="content-table" style="width:100%" border="1px">
       <thead>
         <tr class="active">
           <th>ID</th>
