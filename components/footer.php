@@ -1,21 +1,19 @@
 <footer class="text-center text-lg-start">
   <!-- Copyright -->
   <div class="text-center p-3">
-    © <?php echo date("Y") ?> Evrotip&trade; <br>
+    &copy; <?php echo date("Y") ?> Evrotip&trade; <br>
     <a href="https://www.evrotip.mk/" target="_blank">Evrotip.mk</a>&nbsp;&#9917;
   </div>
   <!-- Copyright -->
 </footer>
 <?php
-
 dynamicTitleAndPath();
 // require_once($path . "db_conn.php");
 ?>
-<script type="text/javascript" src="https://kit.fontawesome.com/9e05866ef3.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script> -->
-<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript" src="https://kit.fontawesome.com/9e05866ef3.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
