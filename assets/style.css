@@ -20,7 +20,7 @@ body {
   position: fixed;
   bottom: 20px;
   right: 30px;
-  z-index: 99;
+  z-index: 1;
   font-size: 18px;
   border: none;
   outline: none;
@@ -84,7 +84,7 @@ nav {
 }
 
 .searchresult {
-  display: none;
+  /* display: none; */
   padding-top: 10px;
 }
 
@@ -243,13 +243,14 @@ footer a:hover {
 .container {
   min-width: 450px;
   max-width: 76%;
-  margin: auto;
   height: auto;
   min-height: 900px;
-  background-image: url(img/background.jpg);
+  margin: auto;
+  padding-bottom: 10px;
+  background-image: url(img/background2.jpg);
+  /* background-color: yellow; */
   background-position: center;
 }
-
 
 div.dataTables_wrapper {
   margin: auto;

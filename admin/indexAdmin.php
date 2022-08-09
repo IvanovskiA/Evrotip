@@ -5,7 +5,7 @@ require_once("../components/header.php");
 <div class="container">
   <div class="searchresult">
     <?php include("../message.php"); ?>
-    <table class="content-table" style="width:100%" border="1px">
+    <table class="content-table" id="usersTable" style="width:100%" border="1px">
       <thead>
         <tr class="active">
           <th>ID</th>
