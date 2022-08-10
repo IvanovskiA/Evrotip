@@ -23,7 +23,7 @@ require_once($path . "dataBase/db_conn.php");
 <body>
   <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
   <nav>
-    <label class="logo"><a href="<?php echo $path . "write.php" ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt=""></a></label>
+    <label class="logo"><a href="<?php echo $_SERVER['PHP_SELF']; ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt=""></a></label>
     <div class="navbarLinks">
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
