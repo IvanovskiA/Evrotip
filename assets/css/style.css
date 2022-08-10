@@ -62,10 +62,9 @@ nav {
   color: white;
   opacity: 1;
   transition: opacity 0.6s;
-  margin: auto;
+  margin: 20px auto 40px;
   background-color: #550A21;
-  width: 90%;
-  margin-top: 100px;
+  width: 100%;
 }
 
 .closebtn {

@@ -1,8 +1,6 @@
 <?php
-$errors = "";
-$usernameemail = "";
-$password = "";
 require_once("included_functions.php");
+$errors = $usernameemail = $password = "";
 logIn();
 // login function
 function logIn()
@@ -31,9 +29,12 @@ function logIn()
 function checkingLoginData($usernameemail, $password, $connection)
 {
   global $error_array;
-  $query = "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail' LIMIT 1";
+  $query = "SELECT * FROM users WHERE username = :usernameemail or email = :usernameemail LIMIT 1";
   $statement = $connection->prepare($query);
-  $statement->execute();
+  $data = [
+    ':usernameemail' => $usernameemail
+  ];
+  $statement->execute($data);
   $statement->setFetchMode(PDO::FETCH_OBJ);
   $row = $statement->fetch();
   if ($statement->rowCount() > 0) {

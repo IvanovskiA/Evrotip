@@ -31,9 +31,13 @@ function registration()
 function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword)
 {
   global $error_array;
-  $query = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+  $query = "SELECT * FROM users WHERE username = :username OR email = :email";
   $statement = $connection->prepare($query);
-  $statement->execute();
+  $data = [
+    ':username' => $username,
+    ':email' => $email,
+  ];
+  $statement->execute($data);
   if ($statement->rowCount() > 0) {
     $error_array["registration:"] = "failed - username or email already taken";
   } else {
