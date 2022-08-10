@@ -1,5 +1,7 @@
 <?php
-$errors = $usernameemail = $password = "";
+$errors = "";
+$usernameemail = "";
+$password = "";
 require_once("included_functions.php");
 logIn();
 // login function
@@ -11,8 +13,8 @@ function logIn()
   global $connection, $error_array, $usernameemail, $password;
   if (isset($_POST["submit"])) {
     unset($_GET['msg']);
-    $usernameemail = protection($connection, $_POST["username/Email"]);
-    $password = protection($connection, $_POST["password"]);
+    $usernameemail = trim($_POST["username/Email"]);
+    $password = trim($_POST["password"]);
     $required_fields = array("username/Email", "password");
     hasPresence_emailValidation($required_fields);
 
@@ -29,9 +31,12 @@ function logIn()
 function checkingLoginData($usernameemail, $password, $connection)
 {
   global $error_array;
-  $result = mysqli_query($connection, "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail'");
-  $row = mysqli_fetch_assoc($result);
-  if (mysqli_num_rows($result) > 0) {
+  $query = "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail' LIMIT 1";
+  $statement = $connection->prepare($query);
+  $statement->execute();
+  $statement->setFetchMode(PDO::FETCH_ASSOC);
+  $row = $statement->fetch();
+  if ($statement->rowCount() > 0) {
     // $password = password_verify($password, $row["password"]);
     if ($password === $row["password"]) {
       $_SESSION["login"] = true;

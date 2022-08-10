@@ -79,7 +79,9 @@ function checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataTo
     $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
             VALUES ('$referenceNo','$dateCreated','$dataFromDate','$dataToDate',$personObjectId,$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$isoType,$isoCode,'$transactionDate')
             ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$isoType,`ISOCode`=$isoCode";
-    $result = mysqli_query($connection, $query);
+
+    $statement = $connection->prepare($query);
+    $result = $statement->execute();
     if ($result) {
       return true;
     } else {

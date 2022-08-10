@@ -110,6 +110,10 @@ function dynamicTitleAndPath()
       $title = "Evrotip Users";
       $path = "../";
       break;
+    case "/xml/admin/deleteUser.php":
+      $title = "Evrotip Users";
+      $path = "../";
+      break;
     default:
       $title = "Evrotip Dobitnici";
       $path = "";
@@ -123,8 +127,11 @@ function userRoleAndId()
   global $connection, $userid, $userRole;
   if (!empty($_SESSION["iduser"])) {
     $userid = $_SESSION["iduser"];
-    $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");
-    $row = mysqli_fetch_assoc($result);
+    $query = "SELECT * FROM users WHERE id = $userid LIMIT 1";
+    $statement = $connection->prepare($query);
+    $statement->execute();
+    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $row = $statement->fetch();
     $userRole = $row["role"];
     $_SESSION["roleuser"] = $userRole;
   }

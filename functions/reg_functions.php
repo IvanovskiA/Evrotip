@@ -10,11 +10,11 @@ function registration()
   }
   global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
   if (isset($_POST["submit"])) {
-    $name = protection($connection, $_POST["name"]);
-    $username = protection($connection, $_POST["username"]);
-    $email = protection($connection, $_POST["email"]);
-    $password = protection($connection, $_POST["password"]);
-    $confirmpassword = protection($connection, $_POST["confirmpassword"]);
+    $name = trim($_POST["name"]);
+    $username = trim($_POST["username"]);
+    $email = trim($_POST["email"]);
+    $password = trim($_POST["password"]);
+    $confirmpassword = trim($_POST["confirmpassword"]);
 
     $required_fields = array("name", "username", "email", "password", "confirmpassword");
     hasPresence_emailValidation($required_fields);
@@ -28,43 +28,34 @@ function registration()
   }
 }
 
-// function for checking data inserted in registration form
-
-// function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword)
-// {
-//   global $error_array;
-//   $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
-//   if (mysqli_num_rows($duplicate) > 0) {
-//     $error_array["registration:"] = "failed - username or email already taken";
-//   } else {
-//     if ($password == $confirmpassword) {
-//       // $password = password_hash($password, PASSWORD_BCRYPT);
-//       $query = "INSERT INTO users (name,username,email,password)
-//               VALUES('$name','$username','$email','$password')";
-//       mysqli_query($connection, $query);
-//       header("Location: login.php?msg=Registration successuly - now login");
-//       $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
-//     } else {
-//       $error_array["registration"] = "failed - passwords does not match";
-//     }
-//   }
-// }
-
-
 function checkingRegistrationData($connection, $name, $username, $email, $password, $confirmpassword)
 {
   global $error_array;
-  $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
-  if (mysqli_num_rows($duplicate) > 0) {
+  $query = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+  $statement = $connection->prepare($query);
+  $statement->execute();
+  if ($statement->rowCount() > 0) {
     $error_array["registration:"] = "failed - username or email already taken";
   } else {
     if ($password == $confirmpassword) {
       // $password = password_hash($password, PASSWORD_BCRYPT);
       $query = "INSERT INTO users (name,username,email,password)
-              VALUES('$name','$username','$email','$password')";
-      mysqli_query($connection, $query);
-      header("Location: login.php?msg=Registration successuly - now login");
-      $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
+              VALUES(:name,:username,:email,:password)";
+
+      $query_run = $connection->prepare($query);
+      $data = [
+        ':name' => $name,
+        ':username' => $username,
+        ':email' => $email,
+        ':password' => $password,
+      ];
+      $query_execute = $query_run->execute($data);
+      if ($query_execute) {
+        header("Location: login.php?msg=Registration successuly - now login");
+        $error_array["registration:"] = "successful - <a href='login.php' style='color:white'>Login</a>";
+      } else {
+        $error_array["registration"] = "failed";
+      }
     } else {
       $error_array["registration"] = "failed - passwords does not match";
     }

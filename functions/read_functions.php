@@ -9,8 +9,9 @@ function searchByDate($startDate, $endDate)
   global $connection, $query, $message;
   if (($startDate !== "" && $endDate !== "")) {
     $query .= " WHERE TransactionDate BETWEEN '$startDate' and '$endDate'";
-    $result = mysqli_query($connection, $query);
-    $count = mysqli_num_rows($result);
+    $statement = $connection->prepare($query);
+    $statement->execute();
+    $count = $statement->rowCount();
     if ($count == "0") {
       $message = "Ne e pronajden nieden dobitnik!";
     }
@@ -22,7 +23,10 @@ function searchByDate($startDate, $endDate)
 function printingTable()
 {
   global $connection, $query, $table;
-  $result = mysqli_query($connection, $query);
+  $statement = $connection->prepare($query);
+  $statement->execute();
+  $statement->setFetchMode(PDO::FETCH_ASSOC);
+  $result = $statement->fetchAll();
   $table = '
 <table  class="content-table" style="width:100%" border="1px">
   <thead>
@@ -42,7 +46,7 @@ function printingTable()
   </thead>
   <tbody>';
   $brojac = 1;
-  while ($row = mysqli_fetch_assoc($result)) {
+  foreach ($result as $row) {
     $referenceNo = $row['ReferenceNo'];
     $personObjectId = $row['PersonObjectId'];
     $isResident = $row['IsResident'];

@@ -5,7 +5,7 @@ require_once("../components/header.php");
 <div class="container">
   <div class="searchresult">
     <?php include("../message.php"); ?>
-    <table class="content-table" id="usersTable" style="width:100%" border="1px">
+    <table class="content-table" id="usersTable" style="width:100%;" border="1px">
       <thead>
         <tr class="active">
           <th>ID</th>
@@ -20,19 +20,22 @@ require_once("../components/header.php");
       <tbody>
         <?php
         $query = "SELECT * FROM users";
-        $result = mysqli_query($connection, $query);
-        while ($row = mysqli_fetch_assoc($result)) {
+        $statement = $connection->prepare($query);
+        $statement->execute();
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $result = $statement->fetchAll();
+        foreach ($result as $row) {
         ?>
           <tr>
-            <td><?php echo $row['id'] ?></td>
-            <td><?php echo $row['name'] ?></td>
-            <td><?php echo $row['username'] ?></td>
-            <td><?php echo $row['email'] ?></td>
-            <td><?php echo $row['password'] ?></td>
-            <td><?php echo $row['role'] ?></td>
+            <td><?= $row["id"]  ?></td>
+            <td><?= $row["name"]  ?></td>
+            <td><?= $row["username"]  ?></td>
+            <td><?= $row["email"]  ?></td>
+            <td><?= $row["password"] ?></td>
+            <td><?= $row["role"] ?></td>
             <td>
-              <a href="editUser.php?id=<?php echo $row['id'] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-              <a href="deleteUser.php?id=<?php echo $row['id'] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
+              <a href="editUser.php?id=<?= $row['id'] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+              <a href="deleteUser.php?id=<?= $row['id'] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
             </td>
           </tr>
         <?php } ?>
