@@ -84,6 +84,7 @@ nav {
 
 .searchresult {
   padding-top: 1px;
+  /* display: none; */
 }
 
 .searchresult table {
