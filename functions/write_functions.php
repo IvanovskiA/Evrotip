@@ -91,11 +91,12 @@ function checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataTo
 // move files in folder or creating folder if exist and move in created folder 
 function folderExists($fileName, $fileTmpName)
 {
-  global $mydir;
+  global $mydir, $message;
   if (!file_exists($mydir)) {
     mkdir($mydir, 0777, true);
     move_uploaded_file($fileTmpName, $mydir . $fileName);
   } else {
     move_uploaded_file($fileTmpName, $mydir . $fileName);
   }
+  $message .= 'Data inserted and moved successfully in folder.';
 }
