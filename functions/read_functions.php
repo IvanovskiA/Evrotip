@@ -25,7 +25,7 @@ function printingTable()
   global $connection, $query, $table;
   $statement = $connection->prepare($query);
   $statement->execute();
-  $statement->setFetchMode(PDO::FETCH_ASSOC);
+  $statement->setFetchMode(PDO::FETCH_OBJ);
   $result = $statement->fetchAll();
   $table = '
 <table  class="content-table" style="width:100%" border="1px">
@@ -47,16 +47,16 @@ function printingTable()
   <tbody>';
   $brojac = 1;
   foreach ($result as $row) {
-    $referenceNo = $row['ReferenceNo'];
-    $personObjectId = $row['PersonObjectId'];
-    $isResident = $row['IsResident'];
-    $firstName = $row['FirstName'];
-    $lastName = $row['LastName'];
-    $addressLine1 = $row['AddressLine1'];
-    $city = $row['City'];
-    $isoType = $row['ISOType'];
-    $country = $row['country'];
-    $transactionDate = $row['TransactionDate'];
+    $referenceNo = $row->ReferenceNo;
+    $personObjectId = $row->PersonObjectId;
+    $isResident = $row->IsResident;
+    $firstName = $row->FirstName;
+    $lastName = $row->LastName;
+    $addressLine1 = $row->AddressLine1;
+    $city = $row->City;
+    $isoType = $row->ISOType;
+    $country = $row->country;
+    $transactionDate = $row->TransactionDate;
     $table .= '
   <tr>
     <td>' .  $brojac . '</td>

@@ -75,14 +75,33 @@ function takeData($fileCount, $acceptedext)
 function checkingXmlStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)
 {
   global $connection;
-  if (isset($dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode)) {
+  if (isset($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $isoType, $isoCode, $transactionDate)) {
     $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
-            VALUES ('$referenceNo','$dateCreated','$dataFromDate','$dataToDate',$personObjectId,$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$isoType,$isoCode,'$transactionDate')
-            ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$isoType,`ISOCode`=$isoCode";
+            VALUES (:referenceNo,:dateCreated,:dataFromDate,:dataToDate,:personObjectId,:isResident,:firstName, :genderTypeId ,:lastName,:idDocumentTypeId,:idNo,:addressTypeId,:addressLine1,:city,:isoType,:isoCode,:transactionDate)
+            ON DUPLICATE KEY UPDATE `DateCreated`=:dateCreatedPreg,`DataFromDate`=:dataFromDatePreg,`DataToDate`=:dataToDatePreg,`PersonObjectId`=:personObjectId,`IsResident`=:isResident,`FirstName`=:firstName',`GenderTypeId`=:genderTypeId,`LastName`=:lastName,`IdDocumentTypeId`=:idDocumentTypeId,`IdNo`=:idNo,`AddressTypeId`=:addressTypeId,`AddressLine1`=:addressLine1,`City`=:city,`ISOType`=:isoType,`ISOCode`=:isoCode";
 
-    $statement = $connection->prepare($query);
-    $result = $statement->execute();
-    if ($result) {
+    $query_run = $connection->prepare($query);
+    $data = [
+      ':referenceNo' => $referenceNo,
+      ':dateCreated' => $dateCreatedPreg,
+      ':dataFromDate' => $dataFromDatePreg,
+      ':dataToDate' => $dataToDatePreg,
+      ':personObjectId' => $personObjectId,
+      ':isResident' => $isResident,
+      ':firstName' => $firstName,
+      ':genderTypeId' => $genderTypeId,
+      ':lastName' => $lastName,
+      ':idDocumentTypeId' => $idDocumentTypeId,
+      ':idNo' => $idNo,
+      ':addressTypeId' => $addressTypeId,
+      ':addressLine1' => $addressLine1,
+      ':city' => $city,
+      ':isoType' => $isoType,
+      ':isoCode' => $isoCode,
+      ':transactionDate' => $transactionDate,
+    ];
+    $query_execute = $query_run->execute($data);
+    if ($query_execute) {
       return true;
     } else {
       return false;

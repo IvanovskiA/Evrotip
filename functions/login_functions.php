@@ -34,14 +34,14 @@ function checkingLoginData($usernameemail, $password, $connection)
   $query = "SELECT * FROM users WHERE username = '$usernameemail' or email = '$usernameemail' LIMIT 1";
   $statement = $connection->prepare($query);
   $statement->execute();
-  $statement->setFetchMode(PDO::FETCH_ASSOC);
+  $statement->setFetchMode(PDO::FETCH_OBJ);
   $row = $statement->fetch();
   if ($statement->rowCount() > 0) {
     // $password = password_verify($password, $row["password"]);
-    if ($password === $row["password"]) {
+    if ($password === $row->password) {
       $_SESSION["login"] = true;
-      $_SESSION["iduser"] = $row["id"];
-      $_SESSION["roleuser"] = $row["role"];
+      $_SESSION["iduser"] = $row->id;
+      $_SESSION["roleuser"] = $row->role;
       header("Location: write.php");
     } else {
       $error_array["Failed: "] = "Wrong password";

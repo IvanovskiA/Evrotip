@@ -60,21 +60,13 @@ function currentData()
   $statement = $connection->prepare($query);
   $data = [":id" => $id];
   $statement->execute($data);
-  $row = $statement->fetch(PDO::FETCH_ASSOC);
+  $row = $statement->fetch(PDO::FETCH_OBJ);
 }
 
 //delete user function
 function deleteUser($connection)
 {
   global $id;
-  // // $id = $_GET['id'];
-  // $query = "DELETE FROM users WHERE id = $id";
-  // $result = mysqli_query($connection, $query);
-  // if ($result) {
-  //   header("Location: indexAdmin.php?msg=User deleted successfylly");
-  // } else {
-  //   echo "Failed: " . mysqli_error($connection);
-  // }
   try {
     $query = "DELETE FROM users WHERE id = :id";
     $statement = $connection->prepare($query);

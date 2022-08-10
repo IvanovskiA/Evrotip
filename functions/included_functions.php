@@ -16,11 +16,6 @@ function test_input($data)
   return $data;
 }
 
-function protection($db, $data)
-{
-  return mysqli_real_escape_string($db, test_input($data));
-}
-
 function has_presence($value)
 {
   return isset($value) && $value !== "";
@@ -130,9 +125,9 @@ function userRoleAndId()
     $query = "SELECT * FROM users WHERE id = $userid LIMIT 1";
     $statement = $connection->prepare($query);
     $statement->execute();
-    $statement->setFetchMode(PDO::FETCH_ASSOC);
+    $statement->setFetchMode(PDO::FETCH_OBJ);
     $row = $statement->fetch();
-    $userRole = $row["role"];
+    $userRole = $row->role;
     $_SESSION["roleuser"] = $userRole;
   }
 }

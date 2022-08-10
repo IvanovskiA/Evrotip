@@ -22,20 +22,20 @@ require_once("../components/header.php");
         $query = "SELECT * FROM users";
         $statement = $connection->prepare($query);
         $statement->execute();
-        $statement->setFetchMode(PDO::FETCH_ASSOC);
+        $statement->setFetchMode(PDO::FETCH_OBJ);
         $result = $statement->fetchAll();
         foreach ($result as $row) {
         ?>
           <tr>
-            <td><?= $row["id"]  ?></td>
-            <td><?= $row["name"]  ?></td>
-            <td><?= $row["username"]  ?></td>
-            <td><?= $row["email"]  ?></td>
-            <td><?= $row["password"] ?></td>
-            <td><?= $row["role"] ?></td>
+            <td><?= $row->id  ?></td>
+            <td><?= $row->name  ?></td>
+            <td><?= $row->username  ?></td>
+            <td><?= $row->email  ?></td>
+            <td><?= $row->password ?></td>
+            <td><?= $row->role ?></td>
             <td>
-              <a href="editUser.php?id=<?= $row['id'] ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
-              <a href="deleteUser.php?id=<?= $row['id'] ?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
+              <a href="editUser.php?id=<?= $row->id ?>" class="link-dark"><i class="fa-solid fa-pen-to-square fs-5 me-3"></i></a>
+              <a href="deleteUser.php?id=<?= $row->id ?>" class="link-dark"><i class="fa-solid fa-trash fs-5"></i></a>
             </td>
           </tr>
         <?php } ?>
