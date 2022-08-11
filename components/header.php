@@ -6,6 +6,7 @@ require_once($path . "dataBase/db_conn.php");
 <html lang="en">
 
 <head>
+  <meta name="description" content="Applications which give us winners and users of this application">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,18 +22,18 @@ require_once($path . "dataBase/db_conn.php");
 </head>
 
 <body>
-  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px" alt=""></button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px"></button>
   <nav>
-    <label class="logo"><a href="<?php echo $_SERVER['PHP_SELF']; ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt=""></a></label>
+    <label class="logo"><a href="<?php echo $_SERVER['PHP_SELF']; ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt="Evrotip logo"></a></label>
     <div class="navbarLinks">
       <input type="checkbox" id="check">
       <label for="check" class="checkbtn">
         <i class="fa-solid fa-bars"></i>
       </label>
       <ul>
-        <li><a class="navTime"><?php if (!isset($userid)) {
-                                  echo date("Y/m/d H:i - l");
-                                } ?></a></li>
+        <li><a class="navTime" href="<?php echo $_SERVER['PHP_SELF']; ?>"><?php if (!isset($userid)) {
+                                                                            echo date("Y/m/d H:i - l");
+                                                                          } ?></a></li>
         <li><a class="navLink" href="<?php echo $path . "write.php" ?>"><?php if (isset($userid)) {
                                                                           echo "Zapisuvaj";
                                                                         } ?></a></li>

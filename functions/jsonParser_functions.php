@@ -4,6 +4,7 @@ function takeJSONData($fileCount, $acceptedext)
 {
   global $message;
   for ($i = 0; $i < $fileCount; $i++) {
+    // skrati tuka kod so funkcija
     $fileName = $_FILES['file']['name'][$i];
     $fileTmpName = $_FILES['file']['tmp_name'][$i];
     if (!file_exists($fileTmpName) || !is_uploaded_file($fileTmpName)) {

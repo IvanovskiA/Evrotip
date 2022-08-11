@@ -36,13 +36,14 @@ include_once("components/header.php");
         </div>
       </div>
       <div class="input-group">
+        <label for="file"></label>
         <input type="file" name="file[]" id="file" multiple="multiple" />
       </div>
       <div class="row">
         <div class="roleRadio">
           <label for="">Choose format</label> <br>
           <input type="radio" name="format" id="xml" value="xml" required>
-          <label for="read">XML</label>
+          <label for="xml">XML</label>
           <input type="radio" name="format" id="json" value="json">
           <label for="json">JSON</label>
         </div>
