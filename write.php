@@ -38,6 +38,15 @@ include_once("components/header.php");
       <div class="input-group">
         <input type="file" name="file[]" id="file" multiple="multiple" />
       </div>
+      <div class="row">
+        <div class="roleRadio">
+          <label for="">Choose format</label> <br>
+          <input type="radio" name="format" id="xml" value="xml" required>
+          <label for="read">XML</label>
+          <input type="radio" name="format" id="json" value="json">
+          <label for="json">JSON</label>
+        </div>
+      </div> <br>
       <button type="submit" name="submit" value="submit">Submit</button>
     </form>
   </div>
