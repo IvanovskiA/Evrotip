@@ -2,6 +2,7 @@
 require_once("included_functions.php");
 $errors = $name = $username = $email = $password = $confirmpassword = "";
 registration();
+
 // Registration functions
 function registration()
 {

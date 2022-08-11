@@ -65,6 +65,7 @@ function hasPresence_emailValidation($array)
     }
   }
 }
+
 // userRole function
 function blockRutes()
 {

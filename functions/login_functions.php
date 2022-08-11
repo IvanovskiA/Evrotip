@@ -2,6 +2,7 @@
 $errors = $usernameemail = $password = "";
 require_once("included_functions.php");
 logIn();
+
 // login function
 function logIn()
 {

@@ -3,6 +3,7 @@ require_once("included_functions.php");
 defaultValues();
 searchingWinners();
 printingTable();
+
 // function for modify query
 function searchByDate($startDate, $endDate)
 {
@@ -18,6 +19,7 @@ function searchByDate($startDate, $endDate)
     $message = "Popolnete gi dvete (datum) polinja za prikaz na barani dobitnici!";
   }
 }
+
 // print table function
 function printingTable()
 {
@@ -73,6 +75,7 @@ function printingTable()
 </table>';
   return $table;
 }
+
 // function for submited form in read page
 function searchingWinners()
 {
