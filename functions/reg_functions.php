@@ -21,7 +21,7 @@ function registration()
     hasPresence_emailValidation($required_fields);
 
     if (empty($error_array)) {
-      checkingUserExist($connection, $name, $username, $email, $password, $confirmpassword);
+      checkingUsernameEmailTaken($connection, $name, $username, $email, $password, $confirmpassword);
       errors($error_array);
     } else {
       errors($error_array);
@@ -29,8 +29,8 @@ function registration()
   }
 }
 
-// function for checking if user exist
-function checkingUserExist($connection, $name, $username, $email, $password, $confirmpassword)
+// function checking if username or email already taken
+function checkingUsernameEmailTaken($connection, $name, $username, $email, $password, $confirmpassword)
 {
   global $error_array;
   $duplicate = mysqli_query($connection, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
