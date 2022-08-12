@@ -47,7 +47,7 @@ function checkExtension($fileName, $acceptedext)
   return in_array($extension, $acceptedext);
 }
 
-// checking XML structure
+// checking file structure
 function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {
   if (isset($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)) {
@@ -57,7 +57,7 @@ function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDat
   }
 }
 
-
+// function for inserting data from xml or json file
 function insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {
   global $connection;
@@ -71,9 +71,6 @@ ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFr
     return false;
   }
 }
-
-
-
 
 // move files in folder or creating folder if exist and move in created folder 
 function folderExists($fileName, $fileTmpName)
