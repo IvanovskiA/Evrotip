@@ -19,7 +19,7 @@ function submitIndexForm()
   }
 }
 
-// format inserted file function
+// Format inserted file function
 function checkFileFormat($format, $fileCount)
 {
   if ($format === "json") {
@@ -31,7 +31,7 @@ function checkFileFormat($format, $fileCount)
   }
 }
 
-// checkingFilePresence 
+// CheckingFilePresence 
 function checkingFilePresence($i)
 {
   global $fileName, $fileTmpName;
@@ -40,14 +40,14 @@ function checkingFilePresence($i)
   return file_exists($fileTmpName) || is_uploaded_file($fileTmpName);
 }
 
-// checking extension of file/s
+// Checking extension of file/s
 function checkExtension($fileName, $acceptedext)
 {
   $extension = pathinfo($fileName, PATHINFO_EXTENSION);
   return in_array($extension, $acceptedext);
 }
 
-// checking file structure
+// Checking file structure
 function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {
   if (isset($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)) {
@@ -57,7 +57,7 @@ function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDat
   }
 }
 
-// function for inserting data from xml or json file
+// Function for inserting data from xml or json file
 function insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {
   global $connection;
@@ -72,7 +72,7 @@ function insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $data
   }
 }
 
-// move files in folder or creating folder if exist and move in created folder 
+// Move files in folder or creating folder if exist and move in created folder 
 function folderExists($fileName, $fileTmpName)
 {
   global $mydir, $message;

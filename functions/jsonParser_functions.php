@@ -1,5 +1,5 @@
 <?php
-// taking data from JSON file
+// Taking data from JSON file
 function takeJSONData($fileCount, $acceptedext)
 {
   global $message, $fileName, $fileTmpName;

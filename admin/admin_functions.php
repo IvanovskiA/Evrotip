@@ -4,7 +4,8 @@ $id = $_GET['id'];
 $errors = "";
 editUserFunction($connection, $id);
 currentData($connection, $id);
-// collecting data from edit user form
+
+// Collecting data from edit user form
 function editUserFunction($connection, $id)
 {
   global $error_array, $name, $username, $email, $password, $role;
@@ -27,7 +28,7 @@ function editUserFunction($connection, $id)
   }
 }
 
-// update user data if error array is empty
+// Update user data if error array is empty
 function updateUserData($connection, $name, $username, $password, $email, $role, $error_array, $id)
 {
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
@@ -40,7 +41,7 @@ function updateUserData($connection, $name, $username, $password, $email, $role,
   }
 }
 
-//current data in database
+// Current data in database
 function currentData($connection, $id)
 {
   global $row;
@@ -49,7 +50,7 @@ function currentData($connection, $id)
   $row = mysqli_fetch_assoc($result);
 }
 
-//delete user function
+// Delete user function
 function deleteUser($connection, $id)
 {
   $query = "DELETE FROM users WHERE id = $id";

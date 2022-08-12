@@ -57,7 +57,7 @@ function errors($error_array)
   }
 }
 
-// checking empty field and email validation
+// Checking empty field and email validation
 function hasPresence_emailValidation($array)
 {
   global  $error_array;
@@ -78,7 +78,7 @@ function hasPresence_emailValidation($array)
   }
 }
 
-// userRole function
+// UserRole function
 function blockRutes()
 {
   if (!empty($_SESSION["iduser"])) {
@@ -104,7 +104,7 @@ function blockRutes()
   }
 }
 
-// dynamic title and path if we are in admin pages
+// Dynamic title and path if we are in admin pages
 function dynamicTitleAndPath()
 {
   global $title, $path;
@@ -133,7 +133,7 @@ function dynamicTitleAndPath()
   }
 }
 
-// userAuthentication
+// UserAuthentication
 function userRoleAndId($connection)
 {
   global $userid, $userRole;

@@ -4,7 +4,7 @@ defaultValues();
 searchingWinners($connection);
 printingTable($connection);
 
-// function for modifing query
+// Function for modifing query
 function searchByDate($connection, $startDate, $endDate)
 {
   global  $query, $message;
@@ -20,7 +20,7 @@ function searchByDate($connection, $startDate, $endDate)
   }
 }
 
-// print table function
+// Print table function
 function printingTable($connection)
 {
   global $query, $table;
@@ -76,7 +76,7 @@ function printingTable($connection)
   return $table;
 }
 
-// function for submited form in read page
+// Function for submited form in read page
 function searchingWinners($connection)
 {
   global $startDate, $endDate;
@@ -87,7 +87,7 @@ function searchingWinners($connection)
   }
 }
 
-// default query and date in read
+// Default query and date in read
 function defaultValues()
 {
   global $message, $query, $endDate, $startDate;

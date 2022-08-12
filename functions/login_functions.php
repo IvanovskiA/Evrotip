@@ -3,7 +3,7 @@ $errors = $usernameemail = $password = "";
 require_once("included_functions.php");
 logIn($connection);
 
-// login function
+// Login function
 function logIn($connection)
 {
   global $error_array, $usernameemail, $password;
@@ -23,7 +23,7 @@ function logIn($connection)
   }
 }
 
-// function checking if user exist
+// Function checking if user exist
 function checkingUserExist($usernameemail, $password, $connection)
 {
   global $error_array;
@@ -37,7 +37,7 @@ function checkingUserExist($usernameemail, $password, $connection)
   }
 }
 
-// checking inputed password and password in database
+// Checking inputed password and password in database
 function checkingPassword($password, $row)
 {
   global $error_array;

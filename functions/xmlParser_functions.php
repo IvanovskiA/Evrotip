@@ -1,5 +1,5 @@
 <?php
-// taking data from xml file
+// Taking data from xml file
 function takeXMLData($fileCount, $acceptedext)
 {
   global $message, $fileName, $fileTmpName;
