@@ -7,7 +7,7 @@ printingTable($connection);
 // function for modifing query
 function searchByDate($connection, $startDate, $endDate)
 {
-  global $query, $message;
+  global  $query, $message;
   if (($startDate !== "" && $endDate !== "")) {
     $query .= " WHERE TransactionDate BETWEEN '$startDate' and '$endDate'";
     $result = mysqli_query($connection, $query);

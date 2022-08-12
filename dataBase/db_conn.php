@@ -1,12 +1,14 @@
 <?php
 session_start();
-// require_once("../includes/settings.php");
 
-$DBHost = "localhost";
-$DBUser = "root";
-$DBUserPassword = "ivanovski";
-$DBname = "slotufr";
-
+if ((($_SERVER['PHP_SELF'] === "/xml/admin/indexAdmin.php") ||
+  ($_SERVER['PHP_SELF'] === "/xml/admin/editUser.php") ||
+  ($_SERVER['PHP_SELF'] === "/xml/admin/deleteUser.php")
+)) {
+  require_once("../includes/settings.php");
+} else {
+  require_once("includes/settings.php");
+}
 
 $connection = mysqli_connect($DBHost, $DBUser, $DBUserPassword, $DBname);
 

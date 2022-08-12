@@ -8,7 +8,6 @@
 </footer>
 <?php
 dynamicTitleAndPath();
-// require_once($path . "db_conn.php");
 ?>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://kit.fontawesome.com/9e05866ef3.js" crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
 <?php
 dynamicTitleAndPath();
 require_once($path . "dataBase/db_conn.php");
+require_once($path . "includes/settings.php");
 
 // Where to call block rutes function
 if ($_SERVER['PHP_SELF'] !== "/xml/login.php" && $_SERVER['PHP_SELF'] !== "/xml/registration.php") {
