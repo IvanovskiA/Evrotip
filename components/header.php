@@ -1,6 +1,4 @@
 <?php
-// include($path . "functions/included_functions.php");   
-require_once($path . "dataBase/db_conn.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

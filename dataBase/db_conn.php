@@ -1,12 +1,14 @@
 <?php
 session_start();
+// require_once("../includes/settings.php");
 
-define("DBHost", "localhost");
-define("DBUser", "root");
-define("DBUserPassword", "ivanovski");
-define("DBname", "slotufr");
+$DBHost = "localhost";
+$DBUser = "root";
+$DBUserPassword = "ivanovski";
+$DBname = "slotufr";
 
-$connection = mysqli_connect(DBHost, DBUser, DBUserPassword, DBname);
+
+$connection = mysqli_connect($DBHost, $DBUser, $DBUserPassword, $DBname);
 
 if (mysqli_connect_errno()) {
   die("Mysql connecton failed: ") .

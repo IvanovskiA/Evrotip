@@ -90,15 +90,10 @@ function blockRutes()
       if (($userRole !== "read") && ($userRole !== "read/write") && ($userRole !== "admin")) {
         header("Location: write.php");
       }
-    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/indexAdmin.php") {
-      if ($userRole !== "admin") {
-        header("Location: ../write.php");
-      }
-    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/editUser.php") {
-      if ($userRole !== "admin") {
-        header("Location: ../write.php");
-      }
-    } elseif ($_SERVER['PHP_SELF'] === "/xml/admin/deleteUser.php") {
+    } elseif (($_SERVER['PHP_SELF'] === "/xml/admin/indexAdmin.php") ||
+      ($_SERVER['PHP_SELF'] === "/xml/admin/editUser.php") ||
+      ($_SERVER['PHP_SELF'] === "/xml/admin/deleteUser.php")
+    ) {
       if ($userRole !== "admin") {
         header("Location: ../write.php");
       }
@@ -124,6 +119,10 @@ function dynamicTitleAndPath()
       break;
     case "/xml/admin/deleteUser.php":
       $title = "Evrotip Users";
+      $path = "../";
+      break;
+    case "/xml/dataBase/db_conn.php":
+      $title = "Mysql DataBase";
       $path = "../";
       break;
     default:
