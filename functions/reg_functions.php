@@ -37,12 +37,12 @@ function checkingUsernameEmailTaken($connection, $name, $username, $email, $pass
   if (mysqli_num_rows($duplicate) > 0) {
     $error_array["registration:"] = "failed - username or email already taken";
   } else {
-    insertDataInDb($password, $confirmpassword, $name, $username, $email, $connection);
+    insertUserInDb($password, $confirmpassword, $name, $username, $email, $connection);
   }
 }
 
 // insert data in DataBase function
-function insertDataInDb($password, $confirmpassword, $name, $username, $email, $connection)
+function insertUserInDb($password, $confirmpassword, $name, $username, $email, $connection)
 {
   global $error_array;
   if ($password == $confirmpassword) {

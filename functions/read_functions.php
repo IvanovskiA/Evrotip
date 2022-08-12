@@ -4,7 +4,7 @@ defaultValues();
 searchingWinners();
 printingTable();
 
-// function for modify query
+// function for modifing query
 function searchByDate($startDate, $endDate)
 {
   global $connection, $query, $message;
@@ -93,9 +93,9 @@ function defaultValues()
   global $message, $query, $endDate, $startDate;
   $message = "";
   $query = "SELECT slotpersons.ReferenceNo, slotpersons.PersonObjectId, slotpersons.IsResident, slotpersons.FirstName, slotpersons.LastName, slotpersons.AddressLine1,
-slotpersons.City, slotpersons.ISOType, country_iso.country, slotpersons.TransactionDate
-FROM slotpersons 
-INNER JOIN country_iso ON slotpersons.ISOCode = country_iso.iso_code";
+  slotpersons.City, slotpersons.ISOType, country_iso.country, slotpersons.TransactionDate
+  FROM slotpersons 
+  INNER JOIN country_iso ON slotpersons.ISOCode = country_iso.iso_code";
   $endDate = date("Y-m-d");
   $startDate = date("Y-m-d", strtotime('-2 days', strtotime($endDate)));
 }

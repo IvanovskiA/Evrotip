@@ -111,6 +111,10 @@ function dynamicTitleAndPath()
       $title = "Evrotip Users";
       $path = "../";
       break;
+    case "/xml/admin/deleteUser.php":
+      $title = "Evrotip Users";
+      $path = "../";
+      break;
     default:
       $title = "Evrotip Dobitnici";
       $path = "";
