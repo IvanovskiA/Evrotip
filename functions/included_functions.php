@@ -1,13 +1,20 @@
 <?php
 dynamicTitleAndPath();
 require_once($path . "dataBase/db_conn.php");
+
+// Where to call block rutes function
 if ($_SERVER['PHP_SELF'] !== "/xml/login.php" && $_SERVER['PHP_SELF'] !== "/xml/registration.php") {
   blockRutes();
+} else {
+  if (isset($_SESSION["iduser"])) {
+    header("Location: write.php");
+  }
 }
-userRoleAndId();
 
-// Validation functions
+userRoleAndId($connection);
+
 $error_array = array();
+// Validation functions
 function test_input($data)
 {
   trim($data);
@@ -16,16 +23,20 @@ function test_input($data)
   return $data;
 }
 
+// Protect database from user inputed information
 function protection($db, $data)
 {
   return mysqli_real_escape_string($db, test_input($data));
 }
 
+
+// Checking presence on input fields
 function has_presence($value)
 {
   return isset($value) && $value !== "";
 }
 
+// Check if email format is correct 
 function validationEmail($value)
 {
   return filter_var($value, FILTER_VALIDATE_EMAIL);
@@ -48,7 +59,7 @@ function errors($error_array)
 // checking empty field and email validation
 function hasPresence_emailValidation($array)
 {
-  global $error_array;
+  global  $error_array;
   foreach ($array as $key) {
     $value = test_input($_POST[$key]);
     if (!has_presence($value)) {
@@ -123,9 +134,9 @@ function dynamicTitleAndPath()
 }
 
 // userAuthentication
-function userRoleAndId()
+function userRoleAndId($connection)
 {
-  global $connection, $userid, $userRole;
+  global $userid, $userRole;
   if (!empty($_SESSION["iduser"])) {
     $userid = $_SESSION["iduser"];
     $result = mysqli_query($connection, "SELECT * FROM users where id = $userid LIMIT 1");

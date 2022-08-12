@@ -1,15 +1,12 @@
 <?php
 require_once("included_functions.php");
 $errors = $name = $username = $email = $password = $confirmpassword = "";
-registration();
+registration($connection);
 
 // Registration functions
-function registration()
+function registration($connection)
 {
-  if (isset($_SESSION["iduser"])) {
-    header("Location: write.php");
-  }
-  global $error_array, $connection, $name, $username, $email, $password, $confirmpassword;
+  global $error_array, $name, $username, $email, $password, $confirmpassword;
   if (isset($_POST["submit"])) {
     $name = protection($connection, $_POST["name"]);
     $username = protection($connection, $_POST["username"]);
@@ -29,7 +26,7 @@ function registration()
   }
 }
 
-// function checking if username or email already taken
+// Function checking if username or email already taken
 function checkingUsernameEmailTaken($connection, $name, $username, $email, $password, $confirmpassword)
 {
   global $error_array;
@@ -41,7 +38,7 @@ function checkingUsernameEmailTaken($connection, $name, $username, $email, $pass
   }
 }
 
-// insert data in DataBase function
+// Insert data in DataBase function
 function insertUserInDb($password, $confirmpassword, $name, $username, $email, $connection)
 {
   global $error_array;

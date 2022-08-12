@@ -1,13 +1,13 @@
 <?php
 require_once("included_functions.php");
 defaultValues();
-searchingWinners();
-printingTable();
+searchingWinners($connection);
+printingTable($connection);
 
 // function for modifing query
-function searchByDate($startDate, $endDate)
+function searchByDate($connection, $startDate, $endDate)
 {
-  global $connection, $query, $message;
+  global $query, $message;
   if (($startDate !== "" && $endDate !== "")) {
     $query .= " WHERE TransactionDate BETWEEN '$startDate' and '$endDate'";
     $result = mysqli_query($connection, $query);
@@ -21,9 +21,9 @@ function searchByDate($startDate, $endDate)
 }
 
 // print table function
-function printingTable()
+function printingTable($connection)
 {
-  global $connection, $query, $table;
+  global $query, $table;
   $result = mysqli_query($connection, $query);
   $table = '
 <table  class="content-table" style="width:100%" border="1px">
@@ -77,13 +77,13 @@ function printingTable()
 }
 
 // function for submited form in read page
-function searchingWinners()
+function searchingWinners($connection)
 {
   global $startDate, $endDate;
   if (isset($_POST['submit'])) {
     $startDate = $_POST['txtStartDate'];
     $endDate = $_POST['txtEndDate'];
-    searchByDate($startDate, $endDate);
+    searchByDate($connection, $startDate, $endDate);
   }
 }
 

@@ -2,12 +2,12 @@
 require_once("../functions/included_functions.php");
 $id = $_GET['id'];
 $errors = "";
-editUserFunction();
-currentData();
+editUserFunction($connection, $id);
+currentData($connection, $id);
 // collecting data from edit user form
-function editUserFunction()
+function editUserFunction($connection, $id)
 {
-  global $error_array, $connection, $name, $username, $email, $password, $role;
+  global $error_array, $name, $username, $email, $password, $role;
   if (isset($_POST["submit"])) {
     $name = protection($connection, $_POST["name"]);
     $username = protection($connection, $_POST["username"]);
@@ -19,7 +19,7 @@ function editUserFunction()
 
 
     if (empty($error_array)) {
-      updateUserData($connection, $name, $username, $password, $email, $role, $error_array);
+      updateUserData($connection, $name, $username, $password, $email, $role, $error_array, $id);
       errors($error_array);
     } else {
       errors($error_array);
@@ -28,9 +28,8 @@ function editUserFunction()
 }
 
 // update user data if error array is empty
-function updateUserData($connection, $name, $username, $password, $email, $role, $error_array)
+function updateUserData($connection, $name, $username, $password, $email, $role, $error_array, $id)
 {
-  global $id;
   $query = "UPDATE `users` SET `name`='$name',`username`='$username',`email`='$email',`password`='$password',`role`='$role' WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {
@@ -42,19 +41,17 @@ function updateUserData($connection, $name, $username, $password, $email, $role,
 }
 
 //current data in database
-function currentData()
+function currentData($connection, $id)
 {
-  global $connection, $id, $row;
+  global $row;
   $query = "SELECT * FROM users WHERE  id = $id LIMIT 1";
   $result = mysqli_query($connection, $query);
   $row = mysqli_fetch_assoc($result);
 }
 
 //delete user function
-function deleteUser($connection)
+function deleteUser($connection, $id)
 {
-  global $id;
-  // $id = $_GET['id'];
   $query = "DELETE FROM users WHERE id = $id";
   $result = mysqli_query($connection, $query);
   if ($result) {

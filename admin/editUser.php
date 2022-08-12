@@ -35,7 +35,7 @@ require_once("../components/header.php");
           <input type="radio" name="role" id="admin" value="admin" <?php echo ($row['role'] == 'admin') ? "checked" : ""; ?>>
           <label for="admin">Admin</label>
           <input type="radio" name="role" id="read/write" value="read/write" <?php echo ($row['role'] == 'read/write') ? "checked" : ""; ?>>
-          <label for="admin">Read/Write</label>
+          <label for="read/write">Read/Write</label>
         </div>
       </div>
       <br>

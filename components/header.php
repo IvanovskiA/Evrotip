@@ -22,7 +22,7 @@ require_once($path . "dataBase/db_conn.php");
 </head>
 
 <body>
-  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px"></button>
+  <button onclick="topFunction()" id="myBtn" title="Go to top"><img src=" <?php echo $path . "assets/img/arrow-up.png" ?>" width="30px" height="30px" alt="arrowUpImg"></button>
   <nav>
     <label class="logo"><a href="<?php echo $_SERVER['PHP_SELF']; ?>"><img src="<?php echo $path . "assets/img/logo.png" ?>" alt="Evrotip logo"></a></label>
     <div class="navbarLinks">
@@ -31,19 +31,19 @@ require_once($path . "dataBase/db_conn.php");
         <i class="fa-solid fa-bars"></i>
       </label>
       <ul>
-        <li><a class="navTime" href="<?php echo $_SERVER['PHP_SELF']; ?>"><?php if (!isset($userid)) {
+        <li><a class="navTime" href="<?php echo $_SERVER['PHP_SELF']; ?>"><?php if (!isset($userRole)) {
                                                                             echo date("Y/m/d H:i - l");
                                                                           } ?></a></li>
-        <li><a class="navLink" href="<?php echo $path . "write.php" ?>"><?php if (isset($userid)) {
+        <li><a class="navLink" href="<?php echo $path . "write.php" ?>"><?php if (isset($userRole)) {
                                                                           echo "Zapisuvaj";
                                                                         } ?></a></li>
-        <li><a class="navLink" href="<?php echo $path . "read.php" ?>"><?php if (isset($userid)) {
+        <li><a class="navLink" href="<?php echo $path . "read.php" ?>"><?php if (isset($userRole)) {
                                                                           echo "Citaj";
                                                                         } ?></a></li>
-        <li><a class="navLink" href="<?php echo $path . "logout.php" ?>"><?php if (isset($userid)) {
+        <li><a class="navLink" href="<?php echo $path . "logout.php" ?>"><?php if (isset($userRole)) {
                                                                             echo "Odjava";
                                                                           } ?></a></li>
-        <li><a class="navLink" href="<?php echo $path . "admin/indexAdmin.php" ?>"><?php if (isset($userid) && $userRole === "admin") {
+        <li><a class="navLink" href="<?php echo $path . "admin/indexAdmin.php" ?>"><?php if (isset($userRole) && $userRole === "admin") {
                                                                                       echo "admin";
                                                                                     } ?></a></li>
       </ul>

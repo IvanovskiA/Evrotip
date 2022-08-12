@@ -1,15 +1,12 @@
 <?php
 $errors = $usernameemail = $password = "";
 require_once("included_functions.php");
-logIn();
+logIn($connection);
 
 // login function
-function logIn()
+function logIn($connection)
 {
-  if (isset($_SESSION["iduser"])) {
-    header("Location: write.php");
-  }
-  global $connection, $error_array, $usernameemail, $password;
+  global $error_array, $usernameemail, $password;
   if (isset($_POST["submit"])) {
     unset($_GET["msg"]);
     $usernameemail = protection($connection, $_POST["username/Email"]);
