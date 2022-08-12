@@ -25,6 +25,15 @@ function submitIndexForm()
   }
 }
 
+// checkingFilePresence 
+function checkingFilePresence($i)
+{
+  global $fileName, $fileTmpName;
+  $fileName = $_FILES['file']['name'][$i];
+  $fileTmpName = $_FILES['file']['tmp_name'][$i];
+  return file_exists($fileTmpName) || is_uploaded_file($fileTmpName);
+}
+
 // checking extension of file/s
 function checkExtension($fileName, $acceptedext)
 {

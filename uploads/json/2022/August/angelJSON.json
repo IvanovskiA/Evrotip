@@ -12,12 +12,12 @@
       "Person": [
         {
           "#text": "--",
-          "PersonObjectId": 1111111111111,
+          "PersonObjectId": 6666666666666,
           "EMBG": "",
           "IsResident": 1,
-          "FirstName": "Кочо",
+          "FirstName": "Mario",
           "GenderTypeId": 1,
-          "LastName": "Митревски",
+          "LastName": "Petrovski",
           "IdDocumentList": {
             "#text": "-",
             "IdDocument": {
@@ -41,12 +41,12 @@
         },
         {
           "#text": "--",
-          "PersonObjectId": 2222222222222,
+          "PersonObjectId": 5555555555555,
           "EMBG": "",
           "IsResident": 1,
-          "FirstName": "Filip",
+          "FirstName": "Milorad",
           "GenderTypeId": 1,
-          "LastName": "Kocovski",
+          "LastName": "Bozinovski",
           "IdDocumentList": {
             "#text": "-",
             "IdDocument": {

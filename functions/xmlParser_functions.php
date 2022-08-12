@@ -1,14 +1,13 @@
 <?php
-// takeing data from xml file
+// taking data from xml file
 function takeXMLData($fileCount, $acceptedext)
 {
-  global $message;
+  global $message, $fileName, $fileTmpName;
   $dom = new DOMDocument();
   $dom->preserveWhiteSpace = false;
   for ($i = 0; $i < $fileCount; $i++) {
-    $fileName = $_FILES['file']['name'][$i];
-    $fileTmpName = $_FILES['file']['tmp_name'][$i];
-    if (!file_exists($fileTmpName) || !is_uploaded_file($fileTmpName)) {
+    checkingFilePresence($i);
+    if (!checkingFilePresence($i)) {
       $message = 'No uploaded file/s';
     } else {
       checkExtension($fileName, $acceptedext);
