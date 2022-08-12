@@ -15,13 +15,19 @@ function submitIndexForm()
     $format = $_POST['format'];
     $mydir = "uploads/$format/$godina/$mesec/";
     $fileCount = count($_FILES['file']['name']);
-    if ($format === "json") {
-      $acceptedext = array("json");
-      takeJSONData($fileCount, $acceptedext);
-    } else {
-      $acceptedext = array("xml");
-      takeXMLData($fileCount, $acceptedext);
-    }
+    checkFileFormat($format, $fileCount);
+  }
+}
+
+// format inserted file function
+function checkFileFormat($format, $fileCount)
+{
+  if ($format === "json") {
+    $acceptedext = array("json");
+    takeJSONData($fileCount, $acceptedext);
+  } else {
+    $acceptedext = array("xml");
+    takeXMLData($fileCount, $acceptedext);
   }
 }
 

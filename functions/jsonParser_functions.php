@@ -10,7 +10,7 @@ function takeJSONData($fileCount, $acceptedext)
     } else {
       checkExtension($fileName, $acceptedext);
       if (!checkExtension($fileName, $acceptedext)) {
-        $message .= " Wrong file " . $fileName;
+        $message .= " Wrong format " . $fileName;
       } else {
         $jsonData = file_get_contents($fileTmpName);
         $jsonData = json_decode($jsonData, true);

@@ -12,7 +12,7 @@ function takeXMLData($fileCount, $acceptedext)
     } else {
       checkExtension($fileName, $acceptedext);
       if (!checkExtension($fileName, $acceptedext)) {
-        $message .= " Wrong file " . $fileName;
+        $message .= " Wrong format " . $fileName;
       } else {
         $dom->Load($fileTmpName);
         $referenceNo = $dom->getElementsByTagName('ReferenceNo')->item(0)->nodeValue;
