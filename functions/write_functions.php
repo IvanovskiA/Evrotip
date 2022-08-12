@@ -25,6 +25,13 @@ function submitIndexForm()
   }
 }
 
+// checking extension of file/s
+function checkExtension($fileName, $acceptedext)
+{
+  $extension = pathinfo($fileName, PATHINFO_EXTENSION);
+  return in_array($extension, $acceptedext);
+}
+
 // checking XML structure
 function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {

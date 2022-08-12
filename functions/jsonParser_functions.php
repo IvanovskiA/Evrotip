@@ -10,8 +10,8 @@ function takeJSONData($fileCount, $acceptedext)
     if (!file_exists($fileTmpName) || !is_uploaded_file($fileTmpName)) {
       $message = 'No uploaded file/s';
     } else {
-      $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-      if (!in_array($extension, $acceptedext)) {
+      checkExtension($fileName, $acceptedext);
+      if (!checkExtension($fileName, $acceptedext)) {
         $message .= " Wrong file " . $fileName;
       } else {
         $jsonData = file_get_contents($fileTmpName);

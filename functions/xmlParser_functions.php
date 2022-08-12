@@ -6,14 +6,13 @@ function takeXMLData($fileCount, $acceptedext)
   $dom = new DOMDocument();
   $dom->preserveWhiteSpace = false;
   for ($i = 0; $i < $fileCount; $i++) {
-    // skrati tuka kod so funkcija
     $fileName = $_FILES['file']['name'][$i];
     $fileTmpName = $_FILES['file']['tmp_name'][$i];
     if (!file_exists($fileTmpName) || !is_uploaded_file($fileTmpName)) {
       $message = 'No uploaded file/s';
     } else {
-      $extension = pathinfo($fileName, PATHINFO_EXTENSION);
-      if (!in_array($extension, $acceptedext)) {
+      checkExtension($fileName, $acceptedext);
+      if (!checkExtension($fileName, $acceptedext)) {
         $message .= " Wrong file " . $fileName;
       } else {
         $dom->Load($fileTmpName);
