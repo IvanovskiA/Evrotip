@@ -22,7 +22,12 @@ function takeXMLData($fileCount, $acceptedext)
         $dateCreatedPreg = preg_replace("/[A-Za-z]/", " ", $dateCreated);
         $dataFromDatePreg = preg_replace("/[A-Za-z]/", " ", $dataFromDate);
         $dataToDatePreg = preg_replace("/[A-Za-z]/", " ", $dataToDate);
-        $transactionDate = $dom->getElementsByTagName('TransactionDate')->item(0)->nodeValue;
+        $transactionDate = substr($referenceNo, 3);
+        $transactionDate = substr_replace($transactionDate, "/", 2, 0);
+        $transactionDate = substr_replace($transactionDate, "20", 6, 0);
+        $transactionDate = str_replace("/", "-", $transactionDate);
+        $d = strtotime($transactionDate);
+        $transactionDate = date("Y-m-d", $d);
         $personList = $dom->getElementsByTagName('Person');
         foreach ($personList as $person) {
           $personObjectId = $person->getElementsByTagName('PersonObjectId')->item(0)->nodeValue;

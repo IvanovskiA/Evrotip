@@ -15,6 +15,13 @@ require_once("components/header.php");
   <div class="progress mt-5 mx-5">
     <div class="progress-bar poppins bg-secondary progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
   </div>
+  <div class="text-white">
+    <?php if (isset($_SESSION["xmlInsert"])) {
+      echo $_SESSION["xmlInsert"];
+      $_SESSION["xmlInsert"] = "";
+      unset($_SESSION["xmlInsert"]);
+    } ?>
+  </div>
 </div>
 <?php
 require_once("components/footer.php");

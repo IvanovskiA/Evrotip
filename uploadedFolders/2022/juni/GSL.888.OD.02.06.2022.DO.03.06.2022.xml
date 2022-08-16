@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+            <tns:Report xmlns:tns="http://askmk/ask/Report" xmlns:ns4="http://askmk/ask/ReportTypes" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	        <tns:ReportTypeId>17</tns:ReportTypeId>
+	        <tns:BankId>888</tns:BankId>
+            <tns:ReferenceNo>GS00206/22</tns:ReferenceNo>
+            <tns:DateCreated>2022-06-03T10:56:37Z</tns:DateCreated>
+            <tns:DataFromDate>2022-06-02T07:00:00Z</tns:DataFromDate>
+            <tns:DataToDate>2022-06-03T07:00:00Z</tns:DataToDate>
+            <tns:PersonList>
+        <ns4:Person xmlns="http://askmk/ask/ReportTypes">
+            <ns4:PersonObjectId>0204987480033</ns4:PersonObjectId>
+            <ns4:EMBG/>
+            <ns4:IsResident>1</ns4:IsResident>
+            <ns4:FirstName>Ibrahim</ns4:FirstName>
+            <ns4:GenderTypeId>1</ns4:GenderTypeId>
+            <ns4:LastName>Ekizoglu</ns4:LastName>
+            <ns4:IdDocumentList>
+				<ns4:IdDocument>
+					<ns4:IdDocumentTypeId>2</ns4:IdDocumentTypeId>
+					<ns4:IdNo>A1849358</ns4:IdNo> 
+				</ns4:IdDocument>
+            </ns4:IdDocumentList>
+            <ns4:AddressList>
+                <ns4:Address>
+                    <ns4:AddressTypeId>1</ns4:AddressTypeId>
+                    <ns4:AddressLine1>Ul. Obvhepolska br. 13</ns4:AddressLine1>
+                    <ns4:City>Shtip</ns4:City>
+                    <Country>
+						<ISOType>1</ISOType>
+						<ISOCode>807</ISOCode>
+					</Country>
+                </ns4:Address>
+            </ns4:AddressList>
+        </ns4:Person>
+        <ns4:Person xmlns="http://askmk/ask/ReportTypes">
+            <ns4:PersonObjectId>0201974040048</ns4:PersonObjectId>
+            <ns4:EMBG/>
+            <ns4:IsResident>1</ns4:IsResident>
+            <ns4:FirstName>Teodoros</ns4:FirstName>
+            <ns4:GenderTypeId>1</ns4:GenderTypeId>
+            <ns4:LastName>Mpitsikas</ns4:LastName>
+            <ns4:IdDocumentList>
+				<ns4:IdDocument>
+					<ns4:IdDocumentTypeId>2</ns4:IdDocumentTypeId>
+					<ns4:IdNo>L2003346</ns4:IdNo> 
+				</ns4:IdDocument>
+            </ns4:IdDocumentList>
+            <ns4:AddressList>
+                <ns4:Address>
+                    <ns4:AddressTypeId>1</ns4:AddressTypeId>
+                    <ns4:AddressLine1>Ul. Prilepski braniteli br. 24/1-7</ns4:AddressLine1>
+                    <ns4:City>Prilep</ns4:City>
+                    <Country>
+						<ISOType>1</ISOType>
+						<ISOCode>807</ISOCode>
+					</Country>
+                </ns4:Address>
+            </ns4:AddressList>
+        </ns4:Person></tns:PersonList>
+            <tns:CompanyList/>
+                <tns:TransactionList>
+        <ns4:Transaction xmlns="http://askmk/ask/ReportTypes">
+            <ns4:TransactionObjectId>1</ns4:TransactionObjectId>
+            <ns4:Amount>85473</ns4:Amount>
+            <ns4:TransactionCategoryId>2</ns4:TransactionCategoryId>
+            <ns4:TransactionCompleted>true</ns4:TransactionCompleted>
+            <ns4:CurrencyId>807</ns4:CurrencyId>
+            <ns4:TransactionDate>2022-06-03</ns4:TransactionDate>
+            <ns4:ExecutorPersonId>0204987480033</ns4:ExecutorPersonId>
+            <ns4:LocationDescription>14</ns4:LocationDescription>
+            <ns4:Description>Исплата на тикет</ns4:Description>
+        </ns4:Transaction>
+        <ns4:Transaction xmlns="http://askmk/ask/ReportTypes">
+            <ns4:TransactionObjectId>2</ns4:TransactionObjectId>
+            <ns4:Amount>310000</ns4:Amount>
+            <ns4:TransactionCategoryId>2</ns4:TransactionCategoryId>
+            <ns4:TransactionCompleted>true</ns4:TransactionCompleted>
+            <ns4:CurrencyId>807</ns4:CurrencyId>
+            <ns4:TransactionDate>2022-06-02</ns4:TransactionDate>
+            <ns4:ExecutorPersonId>0201974040048</ns4:ExecutorPersonId>
+            <ns4:LocationDescription>3</ns4:LocationDescription>
+            <ns4:Description>Handpay</ns4:Description>
+        </ns4:Transaction>
+                </tns:TransactionList>
+        </tns:Report>

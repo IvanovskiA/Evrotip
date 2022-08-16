@@ -559,10 +559,10 @@ form {
   }
 }
 
-@font-face {
+/* @font-face {
   font-family: poppins;
   src: url(Poppins-Regular.otf);
-}
+} */
 
 .w-350 {
   width: 350px;
