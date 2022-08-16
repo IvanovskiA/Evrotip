@@ -64,10 +64,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
               $iSOType = $person->getElementsByTagName('ISOType')->item(0)->nodeValue;
               $iSOCode = $person->getElementsByTagName('ISOCode')->item(0)->nodeValue;
               $iSOCodeNew = strval($iSOCode);
-              if ($firstName === "Edison") {
-                echo $file;
-              }
-
               checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode);
               if (!checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)) {
                 $_SESSION["xmlInsert"] .= $file . " Missing element!";
