@@ -1,7 +1,6 @@
 <?php
 require_once("functions/write_functions.php");
 $_SESSION["xmlInsert"] = "";
-$numberOfRows = 0;
 $numberOfPersons = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
   $path = "uploadedFolders/";
@@ -67,14 +66,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
               $iSOCode = $person->getElementsByTagName('ISOCode')->item(0)->nodeValue;
               $iSOCodeNew = strval($iSOCode);
 
-              checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode);
+              // checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode);
               if (!checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDate, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)) {
                 $_SESSION["xmlInsert"] .= $file . " Missing element!";
                 continue (2);
               } else {
-                $numberOfPersons = $dom->getElementsByTagName('Person')->length;
-                $numberOfRows += $numberOfPersons;
-                insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCodeNew);
+                // insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCodeNew);
                 if (!insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCodeNew)) {
                   $_SESSION["xmlInsert"] .= "Error with insert in database $file";
                 }
@@ -85,7 +82,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
       }
     }
   }
-  echo $numberOfRows;
 }
-
+print_r($affectedRows);
 // print_r(scandir("uploadedFolders/2022/November/"));

@@ -3,6 +3,7 @@ require_once("included_functions.php");
 require_once("xmlParser_functions.php");
 require_once("jsonParser_functions.php");
 $message = "";
+$affectedRows = array("insertedRows" => 0, "updatedRows" => 0, "insertedSameData" => 0);
 submitIndexForm();
 
 // Collecting form data
@@ -61,13 +62,28 @@ function checkingStructure($referenceNo, $dateCreated, $dataFromDate, $dataToDat
 function insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $dataToDatePreg, $transactionDate, $personObjectId, $isResident, $firstName, $genderTypeId, $lastName, $idDocumentTypeId, $idNo, $addressTypeId, $addressLine1, $city, $iSOType, $iSOCode)
 {
   global $connection;
+  static $insertedRows = 0;
+  static $updatedRows = 0;
+  static $insertedSameData = 0;
+  global $affectedRows;
   $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
   VALUES ('$referenceNo','$dateCreatedPreg','$dataFromDatePreg','$dataToDatePreg','$personObjectId',$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$iSOType,'$iSOCode','$transactionDate')
   ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$iSOType,`ISOCode`='$iSOCode'";
   $result = mysqli_query($connection, $query);
   if ($result) {
+    if (mysqli_affected_rows($connection) === 1) {
+      $insertedRows++;
+      $affectedRows["insertedRows"] = $insertedRows;
+    } elseif (mysqli_affected_rows($connection) === 2) {
+      $updatedRows++;
+      $affectedRows["updatedRows"] = $updatedRows;
+    } elseif (mysqli_affected_rows($connection) === 0) {
+      $insertedSameData++;
+      $affectedRows["insertedSameData"] = $insertedSameData;
+    }
     return true;
   } else {
+    return false;
     echo mysqli_error($connection);
   }
 }

@@ -109,11 +109,11 @@ $("#file").on("change", ({ target }) => {
     $(".progress-bar").html(progress);
     $(".progress-bar").css("width", progress);
     // console.log(progress);
-    if (progress === "100%") {
-      setTimeout(function () {
-        location.reload(true);
-      }, 1000);
-    }
+    // if (progress === "100%") {
+    //   setTimeout(function () {
+    //     location.reload(true);
+    //   }, 1000);
+    // }
   }
 
   xml.open("POST", "folders.php", true);
