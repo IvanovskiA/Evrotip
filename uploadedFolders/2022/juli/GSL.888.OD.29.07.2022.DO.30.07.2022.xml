@@ -32,31 +32,6 @@
                 </ns4:Address>
             </ns4:AddressList>
         </ns4:Person>
-		<ns4:Person xmlns="http://askmk/ask/ReportTypes">
-            <ns4:PersonObjectId>J608250485</ns4:PersonObjectId>
-            <ns4:EMBG/>
-            <ns4:IsResident>2</ns4:IsResident>
-            <ns4:FirstName>Angel</ns4:FirstName>
-            <ns4:GenderTypeId>1</ns4:GenderTypeId>
-            <ns4:LastName>Ivanovski</ns4:LastName>
-            <ns4:IdDocumentList>
-				<ns4:IdDocument>
-					<ns4:IdDocumentTypeId>2</ns4:IdDocumentTypeId>
-					<ns4:IdNo>032526732</ns4:IdNo> 
-				</ns4:IdDocument>
-            </ns4:IdDocumentList>
-            <ns4:AddressList>
-                <ns4:Address>
-                    <ns4:AddressTypeId>1</ns4:AddressTypeId>
-                    <ns4:AddressLine1>Diellas,</ns4:AddressLine1>
-                    <ns4:City>Korche</ns4:City>
-                    <Country>
-						<ISOType>1</ISOType>
-						<ISOCode>008</ISOCode>
-					</Country>
-                </ns4:Address>
-            </ns4:AddressList>
-        </ns4:Person>
         <ns4:Person xmlns="http://askmk/ask/ReportTypes">
             <ns4:PersonObjectId>2404952419006</ns4:PersonObjectId>
             <ns4:EMBG/>

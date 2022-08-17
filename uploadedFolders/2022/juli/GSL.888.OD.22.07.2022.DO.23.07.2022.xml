@@ -156,8 +156,7 @@
 					</Country>
                 </ns4:Address>
             </ns4:AddressList>
-        </ns4:Person>
-		</tns:PersonList>
+        </ns4:Person></tns:PersonList>
             <tns:CompanyList/>
                 <tns:TransactionList>
         <ns4:Transaction xmlns="http://askmk/ask/ReportTypes">

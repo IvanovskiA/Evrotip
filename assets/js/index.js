@@ -103,17 +103,16 @@ $("#file").on("change", ({ target }) => {
   }
 
   xml.upload.onprogress = ({ loaded, total }) => {
-    // let progress = "0%";
     let progress = ((loaded / total) * 100).toFixed(0) + "%";
 
     $(".progress-bar").html(progress);
     $(".progress-bar").css("width", progress);
     // console.log(progress);
-    // if (progress === "100%") {
-    //   setTimeout(function () {
-    //     location.reload(true);
-    //   }, 1000);
-    // }
+    if (progress === "100%") {
+      setTimeout(function () {
+        location.reload(true);
+      }, 1000);
+    }
   }
 
   xml.open("POST", "folders.php", true);

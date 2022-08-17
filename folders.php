@@ -1,7 +1,6 @@
 <?php
 require_once("functions/write_functions.php");
 $_SESSION["xmlInsert"] = "";
-$numberOfPersons = array();
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
   $path = "uploadedFolders/";
 
@@ -82,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_FILES)) {
       }
     }
   }
+  $_SESSION["insertedRows"] = "Inserted rows: " . $affectedRows["insertedRows"] . "<br>";
+  $_SESSION["updatedRows"] = "Update rows: " . $affectedRows["updatedRows"] . "<br>";
+  $_SESSION["insertedSameData"] = "Inserted same data: " . $affectedRows["insertedSameData"] . "<br>";
 }
-print_r($affectedRows);
-// print_r(scandir("uploadedFolders/2022/November/"));

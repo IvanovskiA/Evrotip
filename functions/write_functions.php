@@ -68,15 +68,25 @@ function insertDatainDb($referenceNo, $dateCreatedPreg, $dataFromDatePreg, $data
   global $affectedRows;
   $query = "INSERT INTO slotpersons(`ReferenceNo`, `DateCreated`, `DataFromDate`, `DataToDate`, `PersonObjectId`, `IsResident`, `FirstName`, `GenderTypeId`, `LastName`, `IdDocumentTypeId`, `IdNo`, `AddressTypeId`, `AddressLine1`, `City`, `ISOType`, `ISOCode`, `TransactionDate`) 
   VALUES ('$referenceNo','$dateCreatedPreg','$dataFromDatePreg','$dataToDatePreg','$personObjectId',$isResident,'$firstName', $genderTypeId ,'$lastName',$idDocumentTypeId,'$idNo',$addressTypeId,'$addressLine1','$city',$iSOType,'$iSOCode','$transactionDate')
-  ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$iSOType,`ISOCode`='$iSOCode'";
+  ON DUPLICATE KEY UPDATE `DateCreated`='$dateCreatedPreg',`DataFromDate`='$dataFromDatePreg',`DataToDate`='$dataToDatePreg',`PersonObjectId`='$personObjectId',`IsResident`=$isResident,`FirstName`='$firstName',`GenderTypeId`=$genderTypeId,`LastName`='$lastName',`IdDocumentTypeId`=$idDocumentTypeId,`IdNo`='$idNo',`AddressTypeId`=$addressTypeId,`AddressLine1`='$addressLine1',`City`='$city',`ISOType`=$iSOType,`ISOCode`='$iSOCode',`TransactionDate`='$transactionDate'";
   $result = mysqli_query($connection, $query);
   if ($result) {
     if (mysqli_affected_rows($connection) === 1) {
       $insertedRows++;
       $affectedRows["insertedRows"] = $insertedRows;
     } elseif (mysqli_affected_rows($connection) === 2) {
-      $updatedRows++;
-      $affectedRows["updatedRows"] = $updatedRows;
+      $query = "SELECT * FROM slotpersons where ReferenceNo = '$referenceNo' AND PersonObjectId='$personObjectId' AND TransactionDate='$transactionDate' LIMIT 1";
+      $result = mysqli_query($connection, $query);
+      $row = mysqli_fetch_assoc($result);
+      define("OLDPERSON", $row["id"]);
+      if ($updatedRows > 0) {
+        if (OLDPERSON !== $row["id"]) {
+          $updatedRows++;
+        }
+        $affectedRows["updatedRows"] = $updatedRows;
+      } else {
+        $updatedRows++;
+      }
     } elseif (mysqli_affected_rows($connection) === 0) {
       $insertedSameData++;
       $affectedRows["insertedSameData"] = $insertedSameData;
